@@ -1,12 +1,10 @@
 .header{
     height: 6.5rem;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
-    display: grid;
-    grid-template-columns: 10rem;
-    grid-template-areas: "logo";
-    grid-template-rows: 100%;
+    display: flex;
+    justify-content: space-around;
     .logo{
-        margin: 0.5rem auto;
+        margin: 0.5rem;
         img{
             height: 100%;
             filter: blur(0);
@@ -15,4 +13,26 @@
                 -webkit-transform: translateZ(0);
         }
     }
+    .menu{
+        width: 20rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        ul{ 
+            width: 100%;
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            padding-left: 0px;
+            li{
+                font-weight: bold;
+            }
+        }
+    }
+
+}
+
+ul,
+li {
+    list-style: none;
 }
