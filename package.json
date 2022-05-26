@@ -10,8 +10,10 @@
     "lint": "eslint --fix . --ext .js,.jsx"
   },
   "dependencies": {
+    "node-sass": "^7.0.1",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
@@ -25,6 +27,7 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.30.0",
     "prettier": "^2.6.2",
+    "sass": "^1.52.1",
     "vite": "^2.9.9"
   }
 }

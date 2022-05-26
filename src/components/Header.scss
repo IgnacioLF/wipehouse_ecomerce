@@ -1,0 +1,18 @@
+.header{
+    height: 6.5rem;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+    display: grid;
+    grid-template-columns: 10rem;
+    grid-template-areas: "logo";
+    grid-template-rows: 100%;
+    .logo{
+        margin: 0.5rem auto;
+        img{
+            height: 100%;
+            filter: blur(0);
+                -webkit-filter: blur(0);
+                transform: translateZ(0);
+                -webkit-transform: translateZ(0);
+        }
+    }
+}
