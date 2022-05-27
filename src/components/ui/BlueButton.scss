@@ -1,0 +1,19 @@
+.bluebuttom{
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    background-color: #00789f;
+    border-radius: 15px;
+    border: none;
+    font-size: 2rem;
+    font-weight:700;
+    color: white;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+
+.bluebuttom:hover{
+    background-color: #47c9f3;
+    transition: 0.2s ease-in;
+}

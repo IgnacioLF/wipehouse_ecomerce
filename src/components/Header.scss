@@ -1,7 +1,10 @@
 .header{
     height: 6.5rem;
+    background-color: white;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
     display: flex;
+    position: fixed;
+    width: 100%;
     justify-content: space-around;
     .logo{
         margin: 0.5rem;
@@ -29,7 +32,6 @@
             }
         }
     }
-
 }
 
 ul,

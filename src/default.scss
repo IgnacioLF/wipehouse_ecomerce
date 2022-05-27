@@ -3,7 +3,7 @@ html {
 }
 
 html,
-body {
+body{
     height: 100%;
     margin: 0;
     padding: 0;
@@ -30,4 +30,7 @@ a,a:hover{
     -webkit-transition: all .4s ease-in-out;
     -moz-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
+}
+.main {
+    padding-top: 6.5rem;
 }
