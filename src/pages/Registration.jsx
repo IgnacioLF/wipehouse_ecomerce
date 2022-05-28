@@ -1,7 +1,9 @@
+import Singup from "../components/Singup";
+
 const Registration = () => {
     return (
     <div>
-        <h1>Registration page</h1>
+        <Singup />
     </div>
     )
 }

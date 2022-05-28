@@ -19,7 +19,7 @@ const Singin = () =>{
                     ev.preventDefault()
                     singInWithGoogle()
                 }}>
-                    <BlueButton >Sing in with Goole</BlueButton>
+                    <BlueButton type={'submit'}>Sing in with Goole</BlueButton>
                 </form>
             </div>
         </div>

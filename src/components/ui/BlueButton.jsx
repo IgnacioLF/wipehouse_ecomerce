@@ -1,7 +1,7 @@
 import './BlueButton.scss'
 
-const BlueButton = ({children}) =>{
-    return(<button className='bluebuttom'>{children}</button>)
+const BlueButton = ({type,children}) =>{
+    return(<button className='bluebuttom' type={type}>{children}</button>)
 }
 
 export default BlueButton;
