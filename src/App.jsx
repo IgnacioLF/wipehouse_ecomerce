@@ -38,15 +38,6 @@ class App extends Component {
                 this.setState({currentUser: null})
                 initialState.currentUser=null
             }
-          /*
-            if (!userAuth) {
-                this.setState(null)
-                initialState.currentUser=null
-            }
-            this.setState({
-                currentUser: userAuth
-            })
-            */
         })
     }
 

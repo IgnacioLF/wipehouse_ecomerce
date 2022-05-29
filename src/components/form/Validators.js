@@ -30,9 +30,16 @@ export const confirmPasswordValidator = (confirmPassword, form) => {
 
 export const nombreValidator = nombre => {
   if(!nombre){
-    return "Nombre es requerido"
+    return "Nombre es requerido";
   } else if (nombre.length < 4){
-    return "Nombre tiene que ser mayor que 4 caracteres"
+    return "Nombre tiene que ser mayor que 4 caracteres";
+  }
+  return "";
+}
+
+export const notEmpty = value => {
+  if (!value){
+    return "Debe rellenar el campo";
   }
   return "";
 }

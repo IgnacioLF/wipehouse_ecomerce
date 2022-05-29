@@ -4,10 +4,17 @@ import './Singup.scss'
 import BlueButton from './ui/BlueButton'
 import Errordiv from './ui/Errordiv'
 import { useSingUpValidator } from './form/useSingupValidator'
+import { createUserfromregister, auth } from '../firebase/utils';
+import { Navigate } from 'react-router-dom';
+
 
 
 
 const Singup = () => {
+    const [currentUser,setcurrentUser] = useState(auth.currentUser)
+        auth.onAuthStateChanged(userAuth =>{
+        setcurrentUser(auth.currentUser)
+    })
     const [form , setForm] = useState({
         nombre: "",
         email: "",
@@ -34,13 +41,13 @@ const Singup = () => {
         e.preventDefault();
         const { isValid } = validateForm({form, errors, forceTouchErrors: true});
         if (!isValid) return;
-
-        // TODO registro email con firebase
-        alert(JSON.stringify(form, null, 2));
+        createUserfromregister(form.nombre,form.email,form.password)
+        // TODO error firebase conect
     };
 
     return (
         <div className='singup'>
+            { currentUser &&(<Navigate to="/"/>)}
             <div className='wrap'>
                 <h2>Registrarse</h2>
                 <form onSubmit={onSubmitForm}>
@@ -58,44 +65,5 @@ const Singup = () => {
         </div>
     )
 }
-
-
-/*
-const Singup = () => {
-    const [nombre,setNombre] = useState('');
-    const [email,setEmail] = useState('');
-    const [contrasena,setContrasena] = useState('');
-    const [repcontrasena, setRepcontrasena] = useState('');
-    const [error, setError] = useState('');
-    const formvalidation = () => {
-        if (nombre===''){
-            setError(<Errordiv mensaje={'Error debe introducir un nombre'} />)
-            return false
-        }
-    }
-    /*
-    meter error dentro del input 
-    return (
-        <div className='singup'>
-            <div className='wrap'>
-                <h2>Registrarse</h2>
-                <form onSubmit={ev => {
-                    if (formvalidation()===false){
-                        ev.preventDefault();
-                    }
-                }}>
-                    <InputLabel label={'Nombre'} inputtype='text' inputvalue={nombre} inputonchange={ev => setNombre(ev.target.nombre)} />
-                    {error}
-                    <InputLabel label={'Email'} inputtype='email' inputvalue={email} inputonchange={ev => setEmail(ev.target.email)}/>
-                    <InputLabel label={'Contraseña'} inputtype='password' inputvalue={contrasena} inputonchange={ev => setContrasena(ev.target.contrasena)}/>
-                    <InputLabel label={'Repetir contraseña'} inputtype='password' inputvalue={repcontrasena} inputonchange={ev => setRepcontrasena(ev.target.repcontrasena)}/>
-                    <BlueButton type={'submit'}>Registrarse</BlueButton>
-                </form>
-            </div>
-        </div>
-    )
-}
-*/
-
 
 export default Singup

@@ -1,6 +1,6 @@
 /* eslint-disable no-extra-boolean-cast */
 import { useState } from "react";
-import { emailValidator, passwordValidator, confirmPasswordValidator, nombreValidator } from "./Validators";
+import { notEmpty } from "./Validators";
 
 // loops trought object to set touched true (forcevalidation on submit)
 const touchErrors = errors => {
@@ -13,24 +13,14 @@ const touchErrors = errors => {
     }, {})
 }
 
-export const useSingUpValidator = form => {
+export const useSinginValidator = form => {
     const [errors, setErrors] = useState({
-        nombre: {
-            touched: false,
-            error: false,
-            message: "",
-        },
         email: {
             touched: false,
             error: false,
             message: "",
         },
         password: {
-            touched: false,
-            error: false,
-            message: "",
-        },
-        confirmPassword: {
             touched: false,
             error: false,
             message: "",
@@ -55,31 +45,19 @@ export const useSingUpValidator = form => {
             nextErrors = touchErrors(errors)
         }
 
-        const {nombre,email, password, confirmPassword} = form;
+        const {email, password} = form;
 
-        if (nextErrors.nombre.touched && (field ? field==='nombre' : true)){
-            const nombreMenssage = nombreValidator(nombre, form);
-            nextErrors.nombre.error = !!nombreMenssage;
-            nextErrors.nombre.message = nombreMenssage;
-            if (!!nombreMenssage) isValid = false;
-        }
         if (nextErrors.email.touched && (field ? field==='email' : true)){
-            const emailMenssage = emailValidator(email, form);
+            const emailMenssage = notEmpty(email, form);
             nextErrors.email.error = !!emailMenssage;
             nextErrors.email.message = emailMenssage;
             if (!!emailMenssage) isValid = false;
         }
         if (nextErrors.password.touched && (field ? field === "password" : true)) {
-            const passwordMessage = passwordValidator(password, form);
+            const passwordMessage = notEmpty(password, form);
             nextErrors.password.error = !!passwordMessage;
             nextErrors.password.message = passwordMessage;
             if (!!passwordMessage) isValid = false;
-        }
-        if (nextErrors.confirmPassword.touched && (field ? field === 'confirmPassword' : true)) {
-            const confirmPasswordMessage = confirmPasswordValidator(confirmPassword,form);
-            nextErrors.confirmPassword.error = !!confirmPasswordMessage;
-            nextErrors.confirmPassword.message = confirmPasswordMessage;
-            if (!!confirmPasswordMessage) isValid = false;
         }
         setErrors(nextErrors);
         return {isValid,errors: nextErrors}
@@ -103,4 +81,3 @@ export const useSingUpValidator = form => {
     return { validateForm,onBlurField,errors}
 
 }
-
