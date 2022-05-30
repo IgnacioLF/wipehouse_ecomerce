@@ -1,7 +1,8 @@
 import userTypes from "./user.types";
 
 const INITIAL_STATE = {
-    currentUser: null
+    currentUser: null,
+    singInError: false
 };
 
 const userReducer = (state=INITIAL_STATE, action) => {
@@ -10,6 +11,11 @@ const userReducer = (state=INITIAL_STATE, action) => {
             return {
                 ...state,
                 currentUser: action.payload
+            }
+        case userTypes.SING_IN_ERROR:
+            return{
+                ...state,
+                singInError: action.payload
             }
         default:
             return state;

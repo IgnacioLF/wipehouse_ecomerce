@@ -71,24 +71,5 @@ export const singinWithEmail = async(email,password) =>{
             console.log(errorCode);
             error = ('error general');
         })
-/*
-    let p = new Promise((resolve,reject) => {
-        signInWithEmailAndPassword (auth, email, password).then()
-        .catch((error) => {
-            console.log(error);
-            const errorCode = error.code
-            reject(errorCode)
-        })
-    })
-
-    p.then((mensaje) => {
-        console.log('then:', mensaje)
-        return(mensaje)
-    }).catch((mensaje) => {
-        console.log('cathc:', mensaje)
-        return(mensaje)
-    })
-
-    */
 }
 

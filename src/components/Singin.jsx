@@ -1,24 +1,38 @@
 import BlueButton from './ui/BlueButton';
 import './Singin.scss';
-import { singInWithGoogle, auth, singinWithEmail } from '../firebase/utils';
-import { useState } from 'react';
+import { singInWithGoogle, auth } from '../firebase/utils';
+import { useState, useEffect } from 'react';
 import Errordiv from './ui/Errordiv'
 import { Navigate } from 'react-router-dom';
 import InputLabel from './form/components/InputLabel';
 import { useSinginValidator } from '../customHooks/useSinginValidator';
 import { async } from '@firebase/util';
+import { useDispatch, useSelector } from 'react-redux';
+import { signInUser } from '../redux/User/user.actions.js'
+
+const mapState = ({ user }) => ({
+    singInError: user.singInError
+});
 
 const Singin = () =>{
+    const { singInError } = useSelector(mapState)
+    const dispatch = useDispatch();
     const [currentUser,setcurrentUser] = useState(auth.currentUser)
-    auth.onAuthStateChanged(userAuth =>{
-        setcurrentUser(auth.currentUser)
-    })
-    const [form, setForm] = useState({
+    const [submitError, setSubmitError] = useState('')
+        const [form, setForm] = useState({
         email: "",
         password: "",
     })
-    const [submitError, setSubmitError] = useState('')
     const {errors, validateForm, onBlurField } = useSinginValidator(form);
+
+    useEffect(() => {
+        setSubmitError(singInError)
+    }, [singInError])
+
+    auth.onAuthStateChanged(userAuth =>{
+        setcurrentUser(auth.currentUser)
+    })
+
     const onUpdateField= (e) => {
         const field = e.target.name;
         const nextFormState = {
@@ -38,8 +52,7 @@ const Singin = () =>{
         e.preventDefault();
         const { isValid } = validateForm({form, errors, forceTouchErrors: true});
         if (!isValid) return;
-        singinWithEmail(form.email,form.password)
-        // TODO error con credenciales erroneas
+        dispatch(signInUser(form.email,form.password));
     }
     
     return (
