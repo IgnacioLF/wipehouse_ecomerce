@@ -1,6 +1,6 @@
 /* eslint-disable no-extra-boolean-cast */
 import { useState } from "react";
-import { emailValidator, passwordValidator, confirmPasswordValidator, nombreValidator } from "./Validators";
+import { emailValidator, passwordValidator, confirmPasswordValidator, nombreValidator } from "../components/form/Validators.js";
 
 // loops trought object to set touched true (forcevalidation on submit)
 const touchErrors = errors => {

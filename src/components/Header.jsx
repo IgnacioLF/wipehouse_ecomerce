@@ -16,6 +16,7 @@ const Header = ({currentUser}) => {
 
             {currentUser&&(
                 <ul>
+                    <li><Link to="/account">Account</Link></li>
                     <li>
                         <span onClick={() => {
                             auth.signOut()

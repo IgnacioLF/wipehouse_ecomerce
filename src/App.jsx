@@ -9,10 +9,11 @@ import { useEffect } from 'react';
 import { onSnapshot } from "firebase/firestore";
 import { setCurrentUser } from './redux/User/user.actions.js';
 import { connect } from 'react-redux';
+import MyAccount from './pages/MyAccount.jsx';
 
 
 const App = (props) => {
-    const { setCurrentUser, currentUser } = props;
+    const { setCurrentUser } = props;
 
     useEffect(() =>{
         const authListener = auth.onAuthStateChanged(async userAuth => {
@@ -40,9 +41,10 @@ const App = (props) => {
             <Header />
             <div className='main'>
             <Routes>
-                <Route exact path="/" element={<Homepage />} currentUser={currentUser}/>
-                <Route path="/register" element={<Registration />} currentUser={currentUser}/>
-                <Route path="/login" element={<Loginpage />} currentUser={currentUser}/>
+                <Route exact path="/" element={<Homepage />} />
+                <Route path="/register" element={<Registration />} />
+                <Route path="/login" element={<Loginpage />} />
+                <Route path="/account" element={<MyAccount />} />
             </Routes>
             </div>
         </div>

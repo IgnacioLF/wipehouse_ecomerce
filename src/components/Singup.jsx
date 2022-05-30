@@ -3,7 +3,7 @@ import InputLabel from './form/components/InputLabel'
 import './Singup.scss' 
 import BlueButton from './ui/BlueButton'
 import Errordiv from './ui/Errordiv'
-import { useSingUpValidator } from './form/useSingupValidator'
+import { useSingUpValidator } from '../customHooks/useSingupValidator';
 import { createUserfromregister, auth } from '../firebase/utils';
 import { Navigate } from 'react-router-dom';
 

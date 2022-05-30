@@ -1,7 +1,6 @@
 /* eslint-disable no-extra-boolean-cast */
 import { useState } from "react";
-import { notEmpty } from "./Validators";
-
+import { notEmpty } from "../components/form/Validators.js";
 // loops trought object to set touched true (forcevalidation on submit)
 const touchErrors = errors => {
     return Object.entries(errors).reduce((acc, [field, fieldError]) => {

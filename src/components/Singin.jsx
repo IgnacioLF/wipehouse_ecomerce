@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Errordiv from './ui/Errordiv'
 import { Navigate } from 'react-router-dom';
 import InputLabel from './form/components/InputLabel';
-import { useSinginValidator } from './form/useSinginValidator';
+import { useSinginValidator } from '../customHooks/useSinginValidator';
 import { async } from '@firebase/util';
 
 const Singin = () =>{
