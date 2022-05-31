@@ -52,7 +52,6 @@ const Signup = () => {
         e.preventDefault();
         const { isValid } = validateForm({form, errors, forceTouchErrors: true});
         if (!isValid) return;
-        console.log('submiterror test:',submitError )
         dispatch(signUpUser( form.nombre, form.email, form.password ))
     };
 

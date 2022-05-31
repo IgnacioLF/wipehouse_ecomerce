@@ -1,33 +1,51 @@
 .header{
-    height: 6.5rem;
     background-color: white;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
-    display: flex;
     position: fixed;
     width: 100%;
-    justify-content: space-around;
-    .logo{
-        margin: 0.5rem;
-        img{
-            height: 100%;
-            filter: blur(0);
+    .bottomheader{
+        display: flex;
+        justify-content: space-around;
+        .logo {
+            margin: 0.5rem;
+            img {
+                height: 6rem;
+                filter: blur(0);
                 -webkit-filter: blur(0);
                 transform: translateZ(0);
                 -webkit-transform: translateZ(0);
+            }
+        }
+
+        .menu {
+            width: 20rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            ul {
+                width: 100%;
+                list-style: none;
+                display: flex;
+                justify-content: space-around;
+                padding-left: 0px;
+                li {
+                    font-weight: bold;
+                }
+            }
         }
     }
-    .menu{
-        width: 20rem;
+    .adminuser{
+        background-color: #00789f;
         display: flex;
+        padding: 1rem 0;
+        justify-content: flex-end;
         align-items: center;
-        justify-content: center;
-        ul{ 
-            width: 100%;
-            list-style: none;
-            display: flex;
-            justify-content: space-around;
-            padding-left: 0px;
+        ul{
+            margin: 0;
+            padding-right: 3rem;
             li{
+                color: white;
                 font-weight: bold;
             }
         }
