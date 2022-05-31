@@ -13,7 +13,7 @@ const touchErrors = errors => {
     }, {})
 }
 
-export const useSingUpValidator = form => {
+export const useSignUpValidator = form => {
     const [errors, setErrors] = useState({
         nombre: {
             touched: false,

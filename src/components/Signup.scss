@@ -1,11 +1,11 @@
-.singin{
+.signup {
     height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    .wrap{
-        padding: 2rem;
-        margin:5rem;
+    .wrap {
+        margin-top: 5rem;
+        padding: 1rem;
         background-color: lightgray;
         border-radius: 15px;
         box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
@@ -13,13 +13,16 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        h2{
+        h2 {
             margin-top: 0px;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
+            font-size: 3rem;
+            padding-top: 1rem;
         }
-        form {
+        form{
+            margin: 0 5rem;
             button {
-                margin-bottom: 2rem;
+                margin-bottom: 1rem;
                 margin-top: 2rem;
                 width: 100%;
             }

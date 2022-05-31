@@ -1,7 +1,7 @@
 import { async } from '@firebase/util';
 import userTypes from './user.types';
 import { auth } from '../../firebase/utils';
-import { signInWithEmailAndPassword } from 'firebase/auth' 
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth' 
 
 
 export const setCurrentUser = user => ({
@@ -14,8 +14,6 @@ export const signInUser = ( email, password ) => async dispatch => {
         .catch((err) => {
             const errorCode = err.code
             let errormessage = 'Ha ocurrido un error al realizar la operación'
-          //  console.log('singinerror:',err)
-          //  console.log('singinerrorcode:',errorCode)
             switch (errorCode) {
                 case 'auth/wrong-password':
                     errormessage = 'El email o la contraseña no coinciden'
@@ -25,7 +23,27 @@ export const signInUser = ( email, password ) => async dispatch => {
                     break;
             }
             dispatch({
-                type: userTypes.SING_IN_ERROR,
+                type: userTypes.SIGN_IN_ERROR,
+                payload: errormessage
+            })
+        })
+}
+
+export const signUpUser = ( nombre, email, password) => async dispatch => {
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            auth.currentUser.displayName = nombre
+        })
+        .catch((err) => {
+            const errorCode = err.code
+            let errormessage = 'Ha ocurrido un error al realizar la operación'
+            switch (errorCode) {
+                case 'auth/email-already-in-use':
+                    errormessage = 'El email ya esta registrado'
+                    break;
+            }
+            dispatch({
+                type: userTypes.SIGN_UP_ERROR,
                 payload: errormessage
             })
         })

@@ -1,21 +1,21 @@
 import BlueButton from './ui/BlueButton';
-import './Singin.scss';
-import { singInWithGoogle, auth } from '../firebase/utils';
+import './Signin.scss';
+import { signInWithGoogle, auth } from '../firebase/utils';
 import { useState, useEffect } from 'react';
 import Errordiv from './ui/Errordiv'
 import { Navigate } from 'react-router-dom';
 import InputLabel from './form/components/InputLabel';
-import { useSinginValidator } from '../customHooks/useSinginValidator';
+import { useSigninValidator } from '../customHooks/useSigninValidator';
 import { async } from '@firebase/util';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInUser } from '../redux/User/user.actions.js'
 
 const mapState = ({ user }) => ({
-    singInError: user.singInError
+    signInError: user.signInError
 });
 
-const Singin = () =>{
-    const { singInError } = useSelector(mapState)
+const Signin = () =>{
+    const { signInError } = useSelector(mapState)
     const dispatch = useDispatch();
     const [currentUser,setcurrentUser] = useState(auth.currentUser)
     const [submitError, setSubmitError] = useState('')
@@ -23,11 +23,11 @@ const Singin = () =>{
         email: "",
         password: "",
     })
-    const {errors, validateForm, onBlurField } = useSinginValidator(form);
+    const {errors, validateForm, onBlurField } = useSigninValidator(form);
 
     useEffect(() => {
-        setSubmitError(singInError)
-    }, [singInError])
+        setSubmitError(signInError)
+    }, [signInError])
 
     auth.onAuthStateChanged(userAuth =>{
         setcurrentUser(auth.currentUser)
@@ -56,7 +56,7 @@ const Singin = () =>{
     }
     
     return (
-    <div className='singin'>
+    <div className='signin'>
         { currentUser &&(<Navigate to="/"/>)}
         <div className='wrap'>
             <h2>Login</h2>
@@ -69,10 +69,10 @@ const Singin = () =>{
                     {submitError ? (<Errordiv mensaje={submitError} />) : null}
                     <BlueButton type={'submit'}>Login</BlueButton>
                 </form>
-                <BlueButton type={'button'} buttonclick={()=> {singInWithGoogle()}}>Sing in with Goole</BlueButton>
+                <BlueButton type={'button'} buttonclick={()=> {signInWithGoogle()}}>Sign in with Goole</BlueButton>
             </div>
         </div>
     </div>)
 }
 
-export default Singin;
+export default Signin;

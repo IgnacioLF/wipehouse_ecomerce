@@ -1,27 +1,38 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import InputLabel from './form/components/InputLabel'
-import './Singup.scss' 
+import './Signup.scss' 
 import BlueButton from './ui/BlueButton'
 import Errordiv from './ui/Errordiv'
-import { useSingUpValidator } from '../customHooks/useSingupValidator';
-import { createUserfromregister, auth } from '../firebase/utils';
+import { useSignUpValidator } from '../customHooks/useSignupValidator';
+import { auth } from '../firebase/utils';
 import { Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { signUpUser } from '../redux/User/user.actions'
 
 
+const mapState = ({ user }) => ({
+    signUpError: user.signUpError
+});
 
-
-const Singup = () => {
+const Signup = () => {
     const [currentUser,setcurrentUser] = useState(auth.currentUser)
         auth.onAuthStateChanged(userAuth =>{
         setcurrentUser(auth.currentUser)
     })
-    const [form , setForm] = useState({
+        const [form , setForm] = useState({
         nombre: "",
         email: "",
         password: "",
         confirmPassword: "",
     })
-    const { errors, validateForm, onBlurField } = useSingUpValidator(form);
+    const { errors, validateForm, onBlurField } = useSignUpValidator(form);
+    const { signUpError } = useSelector(mapState)
+    const dispatch = useDispatch();
+    const [submitError, setSubmitError] = useState('')
+    useEffect(() => {
+        setSubmitError(signUpError)
+    } , [signUpError])
+
     const onUpdateField = e => {
         const field = e.target.name;
         const nextFormState = {
@@ -41,12 +52,12 @@ const Singup = () => {
         e.preventDefault();
         const { isValid } = validateForm({form, errors, forceTouchErrors: true});
         if (!isValid) return;
-        createUserfromregister(form.nombre,form.email,form.password)
-        // TODO error firebase conect
+        console.log('submiterror test:',submitError )
+        dispatch(signUpUser( form.nombre, form.email, form.password ))
     };
 
     return (
-        <div className='singup'>
+        <div className='signup'>
             { currentUser &&(<Navigate to="/"/>)}
             <div className='wrap'>
                 <h2>Registrarse</h2>
@@ -59,6 +70,7 @@ const Singup = () => {
                     {errors.password.touched && errors.password.error ? (<Errordiv mensaje={errors.password.message} />) : null}
                     <InputLabel label={'Repetir contraseña'} inputtype='password' inputname={'confirmPassword'} inputvalue={form.confirmPassword} inputonchange={onUpdateField} inputonBlur={onBlurField} errorform={errors.confirmPassword.touched && errors.confirmPassword.error ? true : null}/>
                     {errors.confirmPassword.touched && errors.confirmPassword.error ? (<Errordiv mensaje={errors.confirmPassword.message}/>) : null}
+                    {submitError ? (<Errordiv mensaje={submitError} />) : null}
                     <BlueButton type={'submit'}>Registrarse</BlueButton>
                 </form>
             </div>
@@ -66,4 +78,4 @@ const Singup = () => {
     )
 }
 
-export default Singup
+export default Signup

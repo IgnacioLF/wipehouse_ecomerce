@@ -12,7 +12,7 @@ const touchErrors = errors => {
     }, {})
 }
 
-export const useSinginValidator = form => {
+export const useSigninValidator = form => {
     const [errors, setErrors] = useState({
         email: {
             touched: false,

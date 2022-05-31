@@ -1,8 +1,8 @@
-import Singin from '../components/Singin'
+import Signin from '../components/Signin'
 import './Loginpage.scss'
 
 const Loginpage = () =>{
-    return (<Singin />)
+    return (<Signin />)
 }
 
 export default Loginpage

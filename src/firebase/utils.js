@@ -14,7 +14,7 @@ export const firestore = firebase.firestore;
 
 const provider = new GoogleAuthProvider();
 
-export const singInWithGoogle = () => {
+export const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
 };
 
@@ -45,7 +45,7 @@ export const handleUserProfile = async(userAuth, additionalData) => {
 }
 
 /**
- * create user from singup from
+ * create user from signup from
  */
 export const createUserfromregister = async(nombre, email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
@@ -60,7 +60,7 @@ export const createUserfromregister = async(nombre, email, password) => {
 /**
  * login with email and password
  */
-export const singinWithEmail = async(email,password) =>{
+export const signinWithEmail = async(email,password) =>{
     signInWithEmailAndPassword (auth, email, password)
         .catch((error) => {
             const errorCode = error.code;
