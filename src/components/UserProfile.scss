@@ -1,0 +1,16 @@
+.userProfile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    border-bottom: 2px solid #00789f;
+    img{
+        width: 10rem;
+    }
+    span{
+        color: #00789f;
+        margin-top: 1rem;
+        font-size: 2.5rem;
+    }
+}

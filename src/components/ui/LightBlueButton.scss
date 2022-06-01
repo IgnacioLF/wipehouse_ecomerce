@@ -1,0 +1,19 @@
+.lightbluebuttom {
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    background-color: #47c9f3;
+    border-radius: 15px;
+    border: none;
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+
+.lightbluebuttom:hover {
+    background-color: #00c0fe;
+    transition: 0.2s ease-in;
+}
