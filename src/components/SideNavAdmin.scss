@@ -1,6 +1,6 @@
 .verticalNavAdmin{
-    background-color: #47c9f3;
-    border-right: 2px solid #00789f;
+    background-color: #00789f;
+    border-right: 2px solid #2c3340;
     .insideVerticalNav {
         ul {
             margin: 0;
@@ -10,7 +10,7 @@
             padding: 2rem;
             text-align: center;
             width: 100%;
-            border-bottom: 2px solid #00789f;
+            border-bottom: 2px solid #2c3340;
             font-size: 2.5rem;
             font-weight: bold;
             color: white;
@@ -19,7 +19,7 @@
             }
         }
         li:hover {
-            background-color: #00789f;
+            background-color: #47c9f3;
             transition: 0.2s ease-in;
             cursor: pointer;
         }

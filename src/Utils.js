@@ -3,6 +3,11 @@ import CortacespedIcon from './assets/CortacespedIconColor.png'
 import limpiadorIcon from './assets/LimpiadorIconColor.png'
 import mantenimientoIcon from './assets/LimpiapiscinasIconColor.png'
 
+export const ProductTypes = [
+    'Cocinero',
+    'Limpieza del hogar',
+    'Cortacesped',
+    'Mantenimiento de piscinas'];
 
 export const checkUserIsAdmin = (currentUser) => {
     if ( !currentUser || !Array.isArray(currentUser.userRoles)) return false;
