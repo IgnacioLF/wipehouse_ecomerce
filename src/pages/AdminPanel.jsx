@@ -12,6 +12,7 @@ const mapState = ({ user }) => ({
 
 const AdminPanel = () => {
     const { currentUser } = useSelector(mapState)
+    console.log('current',currentUser)
     const isAdmin = checkUserIsAdmin(currentUser)
 
     return (
