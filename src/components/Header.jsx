@@ -1,9 +1,9 @@
 import './Header.scss';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import logoimage from '../assets/logo.png';
 import { Link } from 'react-router-dom';
-import { auth } from '../firebase/utils';
 import { checkUserIsAdmin } from '../Utils.js'
+import { signOutUserStart } from '../redux/User/user.actions';
 
 
 const mapState = ({ user }) => ({
@@ -13,6 +13,12 @@ const mapState = ({ user }) => ({
 const Header = (props) => {
     const { currentUser } = useSelector(mapState)
     const isAdmin = checkUserIsAdmin(currentUser)
+    const dispatch = useDispatch();
+
+    
+    const signOut = () => {
+        dispatch(signOutUserStart())
+    }
     //  userRoles.includes('admin')
 
     return (
@@ -39,7 +45,7 @@ const Header = (props) => {
                     <ul>
                         <li><Link to="/account">Account</Link></li>
                         <li>
-                            <span onClick={() => {auth.signOut()}}>Logout</span>
+                            <span onClick={signOut}>Logout</span>
                         </li>
                     </ul>
                 )}

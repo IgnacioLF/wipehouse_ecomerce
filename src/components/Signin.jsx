@@ -1,6 +1,6 @@
 import BlueButton from './ui/BlueButton';
 import './Signin.scss';
-import { signInWithGoogle, auth } from '../firebase/utils';
+import { auth } from '../firebase/utils';
 import { useState, useEffect } from 'react';
 import Errordiv from './ui/Errordiv'
 import { Navigate } from 'react-router-dom';
@@ -8,7 +8,8 @@ import InputLabel from './form/components/InputLabel';
 import { useSigninValidator } from '../customHooks/useSigninValidator';
 import { async } from '@firebase/util';
 import { useDispatch, useSelector } from 'react-redux';
-import { signInUser } from '../redux/User/user.actions.js'
+import { emailSignInStart, googleSignInStart } from '../redux/User/user.actions.js';
+
 
 const mapState = ({ user }) => ({
     signInError: user.signInError
@@ -52,7 +53,7 @@ const Signin = () =>{
         e.preventDefault();
         const { isValid } = validateForm({form, errors, forceTouchErrors: true});
         if (!isValid) return;
-        dispatch(signInUser(form.email,form.password));
+        dispatch(emailSignInStart(form.email, form.password));
     }
     
     return (
@@ -69,7 +70,7 @@ const Signin = () =>{
                     {submitError ? (<Errordiv mensaje={submitError} />) : null}
                     <BlueButton type={'submit'}>Login</BlueButton>
                 </form>
-                <BlueButton type={'button'} buttonclick={()=> {signInWithGoogle()}}>Sign in with Goole</BlueButton>
+                <BlueButton type={'button'} buttonclick={()=> dispatch(googleSignInStart())}>Sign in with Goole</BlueButton>
             </div>
         </div>
     </div>)

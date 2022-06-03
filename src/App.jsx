@@ -3,11 +3,9 @@ import Header from './components/Header.jsx';
 import Homepage from './pages/Homepage.jsx';
 import Registration from './pages/Registration.jsx';
 import Loginpage from './pages/Loginpage.jsx';
-import { auth,handleUserProfile } from './firebase/utils.js';
 import './default.scss';
 import { useEffect } from 'react';
-import { onSnapshot } from "firebase/firestore";
-import { setCurrentUser } from './redux/User/user.actions.js';
+import { checkUserSesion } from './redux/User/user.actions.js';
 import { useSelector, useDispatch } from 'react-redux';
 import MyAccount from './pages/MyAccount.jsx';
 import AdminPanel from './pages/AdminPanel.jsx';
@@ -21,28 +19,10 @@ const App = (props) => {
     const dispatch = useDispatch();
     const { currentUser } = useSelector(mapState)
     const isAdmin = checkUserIsAdmin(currentUser)
-
-    useEffect(() =>{
-        const authListener = auth.onAuthStateChanged(async userAuth => {
-            if (userAuth) {
-                const userRef = await handleUserProfile(userAuth)
-                onSnapshot(userRef,snapshot => {
-                    dispatch(setCurrentUser({
-                        id: snapshot.id,
-                        ...snapshot.data()
-                    }))
-                })
-            } else {
-                dispatch(setCurrentUser(userAuth))
-            }
-        })
-
-        return () => {
-            authListener();
-        }
-
-    }, [])
-
+    useEffect (() => {
+        dispatch(checkUserSesion())
+    },[])  
+ 
     return  (
         <div >
             <Header />

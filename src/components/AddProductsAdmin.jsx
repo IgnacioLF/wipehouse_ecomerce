@@ -7,8 +7,11 @@ import SelectLabel from './form/components/SelectLabel';
 import { ProductTypes } from '../Utils';
 import { useAddProductsAdmin } from '../customHooks/useAddProductsAdmin';
 import Errordiv from './ui/Errordiv'
+import { useDispatch } from 'react-redux';
+import { addTrabajadorStart } from '../redux/Trabajadores/trabajadores.actions';
 
 const AddProductsAdmin = () => {
+    const dispatch = useDispatch();
     const [hidePopupForm, setHidePopupForm] = useState(true)
     const togglePopupForm = () => setHidePopupForm(!hidePopupForm)
     const [form,setForm] = useState({
@@ -18,15 +21,14 @@ const AddProductsAdmin = () => {
         precio: '',
     })
     const { errors, validateForm, onBlurField } = useAddProductsAdmin(form);
-
     const ProductTypesOptions = []
+    
     ProductTypes.forEach(type => {
         ProductTypesOptions.push({
             value: type,
             name: type
         })
     })
-
     const onUpdateField = e => {
         const field = e.target.name;
         const nextFormState = {
@@ -48,6 +50,12 @@ const AddProductsAdmin = () => {
         if (!isValid) return;
         console.log('all good')
         // TODO subir trabajador a firebase
+     /* 
+        dispatch(addTrabajadorStart({
+            form
+        }))
+        */
+
     }
 
     return (

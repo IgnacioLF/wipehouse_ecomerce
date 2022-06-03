@@ -12,16 +12,17 @@ const db = getFirestore(app);
 export const auth = getAuth(app);
 export const firestore = firebase.firestore;
 
-const provider = new GoogleAuthProvider();
-
+/*
+NOT USED
+const provider = new GoogleAuthProvider()
 export const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
-};
+}; */
 
 /**
-    create user document
+    create user document if not exist
 */
-export const handleUserProfile = async(userAuth, additionalData) => {
+export const handleUserProfile = async( userAuth, additionalData ) => {
     if (userAuth!=null) {
         const {uid} = userAuth;
         const userRef = doc(db,'users',`${uid}`)
@@ -75,5 +76,14 @@ export const signinWithEmail = async(email,password) =>{
         })
 }
 
+
+export const getCurrentUser = () => {
+    return new Promise ((resolve,reject) => {
+        const unsuscribe = auth.onAuthStateChanged(userAuth => {
+            unsuscribe();
+            resolve(userAuth)
+        },reject);
+    })
+}
 
 
