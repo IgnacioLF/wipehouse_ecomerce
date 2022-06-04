@@ -6,12 +6,8 @@ const userTypes = {
     SIGN_OUT_USER_SUCCESS: 'SIGN_OUT_USER_SUCCESS',
     SIGN_IN_ERROR: 'SIGN_IN_ERROR',
     GOOGLE_SIGN_IN_START: 'GOOGLE_SIGN_IN_START',
-
-    
-
-// to check
-    SET_CURRENT_USER:  'SET_CURRENT_USER',
-    SIGN_UP_ERROR: 'SIGN_UP_ERROR'
+    SIGN_UP_START: 'SIGN_UP_START',
+    SIGN_UP_ERROR: 'SIGN_UP_ERROR',
 };
 
 export default userTypes;

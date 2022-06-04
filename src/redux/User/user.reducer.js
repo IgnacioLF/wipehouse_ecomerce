@@ -23,19 +23,7 @@ const userReducer = (state=INITIAL_STATE, action) => {
                 ...state,
                 signInError: action.payload
             }
-
-
-
-
-
-
-// to check
-        case userTypes.SET_CURRENT_USER:
-            return {
-                ...state,
-                currentUser: action.payload
-            }
-        case userTypes.SIGN_UP_ERROR:
+         case userTypes.SIGN_UP_ERROR:
             return{
                 ...state,
                 signUpError: action.payload

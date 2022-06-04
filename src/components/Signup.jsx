@@ -7,7 +7,7 @@ import { useSignUpValidator } from '../customHooks/useSignupValidator';
 import { auth } from '../firebase/utils';
 import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { signUpUser } from '../redux/User/user.actions'
+import { signUpUserStart } from '../redux/User/user.actions'
 
 
 const mapState = ({ user }) => ({
@@ -15,11 +15,13 @@ const mapState = ({ user }) => ({
 });
 
 const Signup = () => {
+    // to check
     const [currentUser,setcurrentUser] = useState(auth.currentUser)
         auth.onAuthStateChanged(userAuth =>{
         setcurrentUser(auth.currentUser)
     })
-        const [form , setForm] = useState({
+    
+    const [form , setForm] = useState({
         nombre: "",
         email: "",
         password: "",
@@ -52,7 +54,7 @@ const Signup = () => {
         e.preventDefault();
         const { isValid } = validateForm({form, errors, forceTouchErrors: true});
         if (!isValid) return;
-        dispatch(signUpUser( form.nombre, form.email, form.password ))
+        dispatch(signUpUserStart(form.nombre, form.email, form.password))
     };
 
     return (

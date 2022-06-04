@@ -1,7 +1,7 @@
 import userTypes from "./user.types";
 import { takeLatest, call, all, put } from 'redux-saga/effects'
-import { signInSuccess, signOutUserSuccess, signInError } from "./user.actions";
-import { signInWithEmailAndPassword, GoogleAuthProvider , signInWithPopup} from 'firebase/auth' 
+import { signInSuccess, signOutUserSuccess, signInError, signUpError } from "./user.actions";
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword} from 'firebase/auth' 
 import { auth,handleUserProfile ,getCurrentUser} from '../../firebase/utils';
 import { getDoc } from "firebase/firestore";
 
@@ -70,6 +70,30 @@ export function* googleSignIn() {
     }
 }
 
+
+export function* signUpUser ({ payload: nombre, email, password }) {
+    try {
+        const { user } = yield createUserWithEmailAndPassword(auth, email, password)
+        user.displayName = nombre
+        console.log('user',user)
+        yield getSnapshotFromUserAuth(user)
+    } catch (err) {
+        const errorCode = err.code
+        let errormessage = 'Ha ocurrido un error al realizar la operación'
+        switch (errorCode) {
+            case 'auth/email-already-in-use':
+                errormessage = 'El email ya esta registrado'
+                break;
+        }
+        yield put (signUpError(errormessage))
+    }
+    
+}
+
+export function* onSignUpUserStart() {
+    yield takeLatest(userTypes.SIGN_UP_START, signUpUser)
+}
+
 export function* onGooogleSignInStart() {
     yield takeLatest(userTypes.GOOGLE_SIGN_IN_START, googleSignIn)
 }
@@ -91,6 +115,7 @@ export default function* userSagas(){
         call(onEmailSignInStart), 
         call(onCheckUserSession), 
         call(onSignOutUserStart),
-        call(onGooogleSignInStart),    
+        call(onGooogleSignInStart),
+        call(onSignUpUserStart),    
     ])
 }
