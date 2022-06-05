@@ -4,9 +4,24 @@
     position: fixed;
     width: 100%;
     z-index: 1;
+
     .bottomheader{
         display: flex;
         justify-content: space-around;
+        li {
+            color: #00789f;
+            border: 2px solid transparent;
+        }
+        li:hover {
+            color: #47c9f3;
+            border-bottom: 2px solid;
+        }
+        a{
+            color: #00789f;
+        }
+        a:hover{
+            color: #47c9f3;
+        }
         .logo {
             margin: 0.5rem;
             img {
@@ -17,7 +32,22 @@
                 -webkit-transform: translateZ(0);
             }
         }
-
+        .middlemenu{
+            width: 20rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            ul {
+                width: 100%;
+                list-style: none;
+                display: flex;
+                justify-content: space-around;
+                padding-left: 0px;
+                li {
+                    font-weight: bold;
+                }
+            }
+        }
         .menu {
             width: 20rem;
             display: flex;

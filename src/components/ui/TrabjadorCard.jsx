@@ -6,13 +6,16 @@ const TrabajadorCard = ({nombre, precio, imageURL, categoria}) => {
     return (
         <div className="trabajadorCard">
             <img src={imageURL} alt={nombre} />
-            <ul>
-                <li><span>{categoria}</span></li>
-                <li>
-                    <span className='nombre'>{nombre}</span>
-                </li>
-            </ul>
-            <LightBlueButton>{precio} €</LightBlueButton>
+            <div className='trabajadorCardData'>
+                <ul>
+                    <li><span>{categoria}</span></li>
+                    <li className='middleCard'>
+                        <span>{nombre}</span>
+                        <span className='precioCard'>{precio} €</span>
+                    </li>
+                </ul>
+                <LightBlueButton>Añadir al carro</LightBlueButton>
+            </div>
         </div>
     )
 }

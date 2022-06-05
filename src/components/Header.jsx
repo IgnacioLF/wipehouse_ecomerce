@@ -39,8 +39,13 @@ const Header = (props) => {
                     <img src={logoimage} alt="Wipehouse"></img>
                 </Link>
             </div>
+            <nav className='middlemenu'>
+                <ul>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/search">Buscar</Link></li>
+                </ul>
+            </nav>
             <nav className='menu'>
-
                 {currentUser&&(
                     <ul>
                         <li><Link to="/account">Account</Link></li>
