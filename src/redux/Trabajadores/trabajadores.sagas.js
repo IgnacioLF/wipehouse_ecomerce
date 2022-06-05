@@ -35,7 +35,6 @@ export function* fetchTrabjadores () {
 }
 
 export function* deleteTrabjador({payload}){
-    console.log('id',payload)
     try {
         yield handleDeleteTrabajador(payload);
         yield put(fetchTrabajadoresStart())

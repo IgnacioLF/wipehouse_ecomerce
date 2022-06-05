@@ -1,8 +1,7 @@
 import { db } from "../../firebase/utils";
-import { doc, setDoc, collection, getDocs, deleteDoc } from "firebase/firestore";
+import { orderBy, query, doc, setDoc, collection, getDocs, deleteDoc } from "firebase/firestore";
 
 export const handleAddTrabajador = async trabajador => {
-    console.log('test')
     const newTrabjadorRef = doc(collection(db,'trabajadores'))
     return new Promise ((resolve,reject) => {
         setDoc(newTrabjadorRef, trabajador)
@@ -17,7 +16,7 @@ export const handleAddTrabajador = async trabajador => {
 
 export const handleFetchTrabjadores = () => {
     return new Promise ((resolve,reject) => {
-        getDocs(collection(db,'trabajadores'))
+        getDocs(query(collection(db,'trabajadores'), orderBy('createdDate', 'desc')))
         .then( snapshot => {
             const trabajadoresArray = snapshot.docs.map(doc => {
                 return {

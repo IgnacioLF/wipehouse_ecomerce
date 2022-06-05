@@ -1,0 +1,13 @@
+.trabajadoresResults{
+    h1{
+        text-align: center;
+    }
+    .insideResults {
+        margin: 0 7rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: 'trabajador trabajador trabajador';
+    }
+}
+
+

@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import MyAccount from './pages/MyAccount.jsx';
 import AdminPanel from './pages/AdminPanel.jsx';
 import { checkUserIsAdmin } from './Utils.js';
+import Searchpage from './pages/Searchpage.jsx';
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser
@@ -33,6 +34,7 @@ const App = (props) => {
                 <Route path="/login" element={<Loginpage />} />
                 <Route path="/account" element={<MyAccount />} />
                 <Route path="/adminpanel" element={<AdminPanel />} />
+                <Route path="/search" element={<Searchpage />} />
             </Routes>
             </div>
         </div>
