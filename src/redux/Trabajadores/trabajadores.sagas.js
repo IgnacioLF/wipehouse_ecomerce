@@ -23,9 +23,9 @@ export function* addTrabajador ({payload: categoria,nombre,imageURL,precio}){
     }
 }
 
-export function* fetchTrabjadores ({payload: { filterType }}) {
+export function* fetchTrabjadores ({payload}) {
     try {
-        const trabajadores = yield handleFetchTrabjadores({ filterType });
+        const trabajadores = yield handleFetchTrabjadores({ payload });
         yield put(
             setTrabajadores(trabajadores)
         );

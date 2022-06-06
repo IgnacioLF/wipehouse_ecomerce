@@ -12,6 +12,8 @@ import { useAddProductsAdmin } from '../customHooks/useAddProductsAdmin';
 import Errordiv from './ui/Errordiv'
 import { useDispatch, useSelector } from 'react-redux';
 import { addTrabajadorStart, deleteTrabjadorStart, fetchTrabajadoresStart } from '../redux/Trabajadores/trabajadores.actions';
+import LoadMore from './LoadMore';
+
 
 const mapState = ({ trabajadoresData }) => ({
     trabajadores: trabajadoresData.trabajadores
@@ -30,6 +32,18 @@ const AddProductsAdmin = () => {
     })
     const { errors, validateForm, onBlurField } = useAddProductsAdmin(form);
     const ProductTypesOptions = []
+    const { data, isLastPage, queryDoc } = trabajadores
+
+    const handleLoadMore = () => {
+        console.log('test')
+        dispatch(fetchTrabajadoresStart({ 
+            startAfterDoc: queryDoc,
+            persistTrabajadores: data
+         }))
+    }
+    const configLoadMore = {
+        onLoadMoreEvent: handleLoadMore,
+    }
 
     useEffect(() => {
         dispatch(
@@ -113,7 +127,7 @@ const AddProductsAdmin = () => {
                             <td>
                                 <table className='trabajadoresTable'>
                                     <tbody>
-                                        {trabajadores.map((trabajador, index) => {
+                                        {(Array.isArray(data) && data.length > 0) &&data.map((trabajador, index) => {
                                             const {
                                                 categoria,
                                                 imageURL,
@@ -132,7 +146,7 @@ const AddProductsAdmin = () => {
                                                     <td>
                                                         {nombre}
                                                     </td>
-                                                    <td>
+                                                    <td className='precioTable'>
                                                         {precio} €
                                                     </td>
                                                     <td>
@@ -143,6 +157,9 @@ const AddProductsAdmin = () => {
                                         })}
                                     </tbody>
                                 </table>
+                                <div className='pagger'>
+                                    {!isLastPage && (<LoadMore {...configLoadMore} />)}
+                                </div>
                             </td>
                         </tr>
                     </tbody>

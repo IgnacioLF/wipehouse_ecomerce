@@ -6,6 +6,7 @@ import './TrabajadoresResults.scss'
 import TrabajadorCard from './ui/TrabjadorCard';
 import { ProductTypes } from '../Utils';
 import SelectLabel from './form/components/SelectLabel';
+import LoadMore from './LoadMore';
 
 
 const mapState = ({ trabajadoresData }) => ({
@@ -17,6 +18,19 @@ const TrabajadoresResults = () => {
     const navigate = useNavigate();
     const { filterType } = useParams();
     const { trabajadores } = useSelector(mapState); 
+    const { data, queryDoc, isLastPage } = trabajadores;
+
+    const handleLoadMore = () => {
+        console.log('test')
+        dispatch(fetchTrabajadoresStart({ 
+            filterType, 
+            startAfterDoc: queryDoc,
+            persistTrabajadores: data
+         }))
+    }
+    const configLoadMore = {
+        onLoadMoreEvent: handleLoadMore,
+    }
 
     useEffect(() => {
         dispatch(fetchTrabajadoresStart({ filterType }))
@@ -38,9 +52,9 @@ const TrabajadoresResults = () => {
         navigate(`/search/${nextFilter}`)
     }
 
-    if (!Array.isArray(trabajadores)) return null;
+    if (!Array.isArray(data)) return null;
 
-    if (trabajadores.length<1) {
+    if (data.length<1) {
         return (
             <div className='trabajadoresResults'>
                 <h1>
@@ -55,13 +69,16 @@ const TrabajadoresResults = () => {
             <h1>Buscar trabajadores</h1>
             <SelectLabel  selectOptions={configFilters} selectChange={handleFilter} selectValue={filterType} />
             <div className='insideResults'>
-                { trabajadores.map((trabajador, pos) => {
+                { data.map((trabajador, pos) => {
                 const { imageURL,nombre,precio,categoria} = trabajador
 
                     return(
                         <TrabajadorCard key={pos} nombre={nombre} precio={precio} imageURL={imageURL} categoria={categoria}/>
                     )
                 })}
+            </div>
+            <div className='pagger'>
+                {!isLastPage && (<LoadMore {...configLoadMore} />)}
             </div>
         </div>
     )
