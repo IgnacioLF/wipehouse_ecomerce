@@ -7,9 +7,10 @@ const SelectLabel = ({label,selectChange,selectOptions,selectDefault,selectValue
 
     return (
         <div className='insidewrap'>
-            <label>{label}</label>
+
+            { label && (<label>{label}</label>)}
             <select className={errorform} onChange={selectChange} value={selectValue} name={selectName} onBlur={selectBlur} >
-                <option value={''}>{selectDefault}</option>
+                {selectDefault && (<option value={''}>{selectDefault}</option>)}
                 {selectOptions.map((option, index) => {
                 const { value, name } = option;
                 return (

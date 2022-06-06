@@ -34,7 +34,8 @@ const App = (props) => {
                 <Route path="/login" element={<Loginpage />} />
                 <Route path="/account" element={<MyAccount />} />
                 <Route path="/adminpanel" element={<AdminPanel />} />
-                <Route path="/search" element={<Searchpage />} />
+                <Route exact path="/search" element={<Searchpage />} />
+                <Route path="/search/:filterType" element={<Searchpage />} />
             </Routes>
             </div>
         </div>

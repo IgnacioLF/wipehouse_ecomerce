@@ -5,8 +5,9 @@ export const addTrabajadorStart = (categoria,nombre,imageURL,precio) => ({
     payload: categoria,nombre,imageURL,precio,
 })
 
-export const fetchTrabajadoresStart = () => ({
-    type: trabajadoresTypes.FETCH_TRABAJADORES_START
+export const fetchTrabajadoresStart = (filters={}) => ({
+    type: trabajadoresTypes.FETCH_TRABAJADORES_START,
+    payload: filters,
 });
 
 export const setTrabajadores = trabajadores => ({
