@@ -33,6 +33,11 @@ export const useAddProductsAdmin = form => {
             touched: false,
             error: false,
             message: '',
+        },
+        descripcion: {
+            touched: false,
+            error: false,
+            message: '',
         }
     })
 
@@ -40,7 +45,7 @@ export const useAddProductsAdmin = form => {
         let isValid = true;
         let nextErrors = JSON.parse(JSON.stringify(errors))
         if (forceTouchErrors) {nextErrors = touchErrors(errors)}
-        const { categoria, nombre, imageURL, precio} = form;
+        const { categoria, nombre, imageURL, precio, descripcion} = form;
         if (nextErrors.categoria.touched && (field ? field==='categoria' : true)){
             const categoriaMessage = notEmpty(categoria, form);
             nextErrors.categoria.error = !!categoriaMessage;
@@ -64,6 +69,12 @@ export const useAddProductsAdmin = form => {
             nextErrors.precio.error = !!precioMessage;
             nextErrors.precio.message = precioMessage;
             if (!!precioMessage) isValid = false;
+        }
+        if (nextErrors.descripcion.touched && (field ? field==='descripcion' : true)){
+            const descripcionMessage = notEmpty(descripcion, form);
+            nextErrors.descripcion.error = !!descripcionMessage;
+            nextErrors.descripcion.message = descripcionMessage;
+            if (!!descripcionMessage) isValid = false;
         }
         setErrors(nextErrors);
         return  {isValid,errors: nextErrors}

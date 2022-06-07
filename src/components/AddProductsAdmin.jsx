@@ -13,6 +13,7 @@ import Errordiv from './ui/Errordiv'
 import { useDispatch, useSelector } from 'react-redux';
 import { addTrabajadorStart, deleteTrabjadorStart, fetchTrabajadoresStart } from '../redux/Trabajadores/trabajadores.actions';
 import LoadMore from './LoadMore';
+import TextAreaLabel from './form/components/TextAreaLabel';
 
 
 const mapState = ({ trabajadoresData }) => ({
@@ -29,13 +30,13 @@ const AddProductsAdmin = () => {
         nombre: '',
         imageURL: '',
         precio: '',
+        descripcion: '',
     })
     const { errors, validateForm, onBlurField } = useAddProductsAdmin(form);
     const ProductTypesOptions = []
     const { data, isLastPage, queryDoc } = trabajadores
 
     const handleLoadMore = () => {
-        console.log('test')
         dispatch(fetchTrabajadoresStart({ 
             startAfterDoc: queryDoc,
             persistTrabajadores: data
@@ -81,6 +82,7 @@ const AddProductsAdmin = () => {
             nombre: '',
             imageURL: '',
             precio: '',
+            descripcion: '',
         })
     }
 
@@ -89,7 +91,7 @@ const AddProductsAdmin = () => {
         const { isValid } = validateForm({form, errors, forceTouchErrors: true});
         if (!isValid) return;
         console.log('all good')
-        dispatch(addTrabajadorStart(form.categoria, form.nombre, form.imageURL, form.precio))
+        dispatch(addTrabajadorStart(form.categoria, form.nombre, form.imageURL, form.precio, form.descripcion))
         restetForm()
 
     }
@@ -110,6 +112,8 @@ const AddProductsAdmin = () => {
                     {errors.imageURL.touched && errors.imageURL.error ? (<Errordiv mensaje={errors.imageURL.message} />) : null}
                     <InputLabel label={'Precio'} inputtype={'number'} inputmin={'1'} inputname={'precio'} inputvalue={form.precio} inputonBlur={onBlurField} inputonchange={onUpdateField} errorform={errors.precio.touched && errors.precio.error ? true : null}/>
                     {errors.precio.touched && errors.precio.error ? (<Errordiv mensaje={errors.precio.message} />) : null}
+                    <TextAreaLabel label={'Descripción'} textareaname={'descripcion'} textareavalue={form.descripcion} textareaonBlur={onBlurField} textareaonchange={onUpdateField} errorform={errors.descripcion.touched && errors.descripcion.error ? true : null}/>
+                    {errors.descripcion.touched && errors.descripcion.error ? (<Errordiv mensaje={errors.descripcion.message} />) : null}
                     <BlueButton type={'submit'}>Añadir trabajador</BlueButton>
                 </form>
             </PopupForm>
@@ -136,7 +140,7 @@ const AddProductsAdmin = () => {
                                                 documentID
                                             } = trabajador
                                             return(
-                                                <tr>
+                                                <tr key={index}>
                                                     <td>
                                                         <img src={imageURL} />
                                                     </td>

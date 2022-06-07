@@ -1,5 +1,5 @@
 import { db } from "../../firebase/utils";
-import { where, orderBy, query, doc, setDoc, collection, getDocs, deleteDoc, limit, startAfter } from "firebase/firestore";
+import { where, orderBy, query, doc, setDoc, collection, getDocs, deleteDoc, limit, startAfter, getDoc } from "firebase/firestore";
 
 export const handleAddTrabajador = async trabajador => {
     const newTrabjadorRef = doc(collection(db,'trabajadores'))
@@ -24,10 +24,6 @@ export const handleFetchTrabjadores = ({ payload: { filterType, startAfterDoc, p
     if (startAfterDoc) queryFilters.push(startAfter(startAfterDoc))
     const finalQuery = query(collection(db,'trabajadores'), orderBy('createdDate', 'desc'), ...queryFilters)
 
-/*  
-    let filter = query(collection(db,'trabajadores'), orderBy('createdDate', 'desc'), limit(pageSize))
-    if (filterType) filter = query(collection(db,'trabajadores'), orderBy('createdDate', 'desc'), where('categoria','==',filterType), limit(pageSize))
-*/
     return new Promise ((resolve,reject) => {
         getDocs(finalQuery)
             .then( snapshot => {
@@ -56,11 +52,25 @@ export const handleFetchTrabjadores = ({ payload: { filterType, startAfterDoc, p
 export const handleDeleteTrabajador = documentID => {
     return new Promise ((resolve,reject) => {
         deleteDoc(doc(db,'trabajadores',documentID))
-        .then(() => {
-            resolve()
-        })
-        .catch(err => {
-            reject(err)
-        })
+            .then(() => {
+                resolve()
+            })
+            .catch(err => {
+                reject(err)
+            })
+    })
+}
+
+export const handleFetchTrabajador = trabjadorID => {
+    return new Promise ((resolve,reject) => {
+        getDoc(doc(db,'trabajadores',trabjadorID))
+            .then( snapshot => {
+                if(snapshot.exists) {
+                    resolve(snapshot.data())
+                }
+            })
+            .catch( err => {
+                reject(err)
+            })
     })
 }

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrabajadoresStart } from '../redux/Trabajadores/trabajadores.actions';
 import { useNavigate, useParams } from 'react-router-dom';
 import './TrabajadoresResults.scss'
-import TrabajadorCard from './ui/TrabjadorCard';
+import TrabajadorCard from './ui/TrabajadorCard';
 import { ProductTypes } from '../Utils';
 import SelectLabel from './form/components/SelectLabel';
 import LoadMore from './LoadMore';
@@ -21,7 +21,6 @@ const TrabajadoresResults = () => {
     const { data, queryDoc, isLastPage } = trabajadores;
 
     const handleLoadMore = () => {
-        console.log('test')
         dispatch(fetchTrabajadoresStart({ 
             filterType, 
             startAfterDoc: queryDoc,
@@ -70,10 +69,8 @@ const TrabajadoresResults = () => {
             <SelectLabel  selectOptions={configFilters} selectChange={handleFilter} selectValue={filterType} />
             <div className='insideResults'>
                 { data.map((trabajador, pos) => {
-                const { imageURL,nombre,precio,categoria} = trabajador
-
                     return(
-                        <TrabajadorCard key={pos} nombre={nombre} precio={precio} imageURL={imageURL} categoria={categoria}/>
+                        <TrabajadorCard key={pos} trabajador={trabajador} />
                     )
                 })}
             </div>

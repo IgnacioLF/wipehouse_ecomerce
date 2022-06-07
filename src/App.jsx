@@ -11,6 +11,7 @@ import MyAccount from './pages/MyAccount.jsx';
 import AdminPanel from './pages/AdminPanel.jsx';
 import { checkUserIsAdmin } from './Utils.js';
 import Searchpage from './pages/Searchpage.jsx';
+import TrabajadorDetails from './pages/TrabajadorDetails.jsx';
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser
@@ -36,6 +37,7 @@ const App = (props) => {
                 <Route path="/adminpanel" element={<AdminPanel />} />
                 <Route exact path="/search" element={<Searchpage />} />
                 <Route path="/search/:filterType" element={<Searchpage />} />
+                <Route path="/trabajador/:trabajadorID" element={<TrabajadorDetails />} />
             </Routes>
             </div>
         </div>

@@ -1,8 +1,8 @@
 import trabajadoresTypes from "./trabajadores.types";
 
-export const addTrabajadorStart = (categoria,nombre,imageURL,precio) => ({
+export const addTrabajadorStart = (categoria,nombre,imageURL,precio,descripcion) => ({
     type: trabajadoresTypes.ADD_NEW_TRABAJADOR_START,
-    payload: categoria,nombre,imageURL,precio,
+    payload: categoria,nombre,imageURL,precio,descripcion,
 })
 
 export const fetchTrabajadoresStart = (filters={}) => ({
@@ -18,4 +18,14 @@ export const setTrabajadores = trabajadores => ({
 export const deleteTrabjadorStart = trabajadorID => ({
     type: trabajadoresTypes.DELETE_TRABAJADOR_START,
     payload: trabajadorID,
+})
+
+export const fetchTrabajadorStart = trabajadorID => ({
+    type: trabajadoresTypes.FETCH_TRABAJADOR_START,
+    payload: trabajadorID
+})
+
+export const setTrabajador = trabajador => ({
+    type: trabajadoresTypes.SET_TRABAJADOR,
+    payload: trabajador
 })

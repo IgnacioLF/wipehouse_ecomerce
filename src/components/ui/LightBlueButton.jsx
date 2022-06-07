@@ -1,7 +1,7 @@
 import './LightBlueButton.scss'
 
-const LightBlueButton = ({type,children,buttonclick}) =>{
-    return(<button className='lightbluebuttom' type={type} onClick={buttonclick}>{children}</button>)
+const LightBlueButton = ({type,children,buttonclick,buttonName}) =>{
+    return(<button className='lightbluebuttom' type={type} onClick={buttonclick} name={buttonName}>{children}</button>)
 }
 
 export default LightBlueButton;

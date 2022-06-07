@@ -1,11 +1,11 @@
 import { takeLatest, put, all, call} from 'redux-saga/effects'
 import trabajadoresTypes from './trabajadores.types'
-import { handleAddTrabajador, handleDeleteTrabajador, handleFetchTrabjadores } from './trabajadores.helpers'
+import { handleAddTrabajador, handleDeleteTrabajador, handleFetchTrabajador, handleFetchTrabjadores } from './trabajadores.helpers'
 import { auth } from '../../firebase/utils'
-import { setTrabajadores, fetchTrabajadoresStart } from './trabajadores.actions';
+import { setTrabajadores, fetchTrabajadoresStart, setTrabajador } from './trabajadores.actions';
 
 
-export function* addTrabajador ({payload: categoria,nombre,imageURL,precio}){
+export function* addTrabajador ({payload: categoria,nombre,imageURL,precio,descripcion}){
     try {
         const timestamp = new Date();
         yield handleAddTrabajador({
@@ -13,6 +13,7 @@ export function* addTrabajador ({payload: categoria,nombre,imageURL,precio}){
             nombre,
             imageURL,
             precio,
+            descripcion,
             trabajadorAdminUID: auth.currentUser.uid,
             createdDate: timestamp
         })
@@ -43,6 +44,21 @@ export function* deleteTrabjador({payload}){
     }
 }
 
+export function* fetchTrabajador ({ payload }) {
+    try {
+        const trabajador = yield handleFetchTrabajador(payload)
+        console.log('trabajador',trabajador)
+        yield put(setTrabajador(trabajador))
+
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+export function* onFetchTrabajadorStart () {
+    yield takeLatest(trabajadoresTypes.FETCH_TRABAJADOR_START, fetchTrabajador)
+}
+
 export function* onDeleteTrabajadorStart () {
     yield takeLatest(trabajadoresTypes.DELETE_TRABAJADOR_START, deleteTrabjador)
 }
@@ -59,6 +75,7 @@ export default function* trabajadoresSagas() {
     yield all([
         call(onAddTrabajadores),
         call(onFetchTrabajadoresStart),
-        call(onDeleteTrabajadorStart)
+        call(onDeleteTrabajadorStart),
+        call(onFetchTrabajadorStart)
     ])
 }
