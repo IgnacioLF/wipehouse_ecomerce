@@ -1,9 +1,9 @@
 import cocineroIcon from './assets/CocineroIconColor.png'
-import CortacespedIcon from './assets/CortacespedIconColor.png'
+import cortacespedIcon from './assets/CortacespedIconColor.png'
 import limpiadorIcon from './assets/LimpiadorIconColor.png'
 import mantenimientoIcon from './assets/LimpiapiscinasIconColor.png'
 import cocineroIconDark from './assets/cocineroicon_darkblue.png'
-import CortacespedIconDark from './assets/cortacespedicon_darkblue.png'
+import cortacespedIconDark from './assets/cortacespedicon_darkblue.png'
 import limpiadorIconDark from './assets/limpiadoricon_darkblue.png'
 import mantenimientoIconDark from './assets/mantenimientoicon_darkblue.png'
 
@@ -28,7 +28,7 @@ export const getIcon = (tittle) => {
         case 'Limpieza del hogar':
             return limpiadorIcon;
         case 'Cortacesped':
-            return CortacespedIcon;
+            return cortacespedIcon;
         case 'Mantenimiento de piscinas':
             return mantenimientoIcon;
         default :
@@ -43,7 +43,7 @@ export const getIconDark = (tittle) => {
         case 'Limpieza del hogar':
             return limpiadorIconDark;
         case 'Cortacesped':
-            return CortacespedIconDark;
+            return cortacespedIconDark;
         case 'Mantenimiento de piscinas':
             return mantenimientoIconDark;
         default :

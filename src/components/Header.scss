@@ -49,7 +49,6 @@
             }
         }
         .menu {
-            width: 20rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -62,6 +61,7 @@
                 padding-left: 0px;
                 li {
                     font-weight: bold;
+                    margin-right: 2rem;
                 }
             }
         }

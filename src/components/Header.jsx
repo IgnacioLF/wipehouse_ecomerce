@@ -1,17 +1,20 @@
+/* eslint-disable react/jsx-key */
 import './Header.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import logoimage from '../assets/logo.png';
 import { Link } from 'react-router-dom';
 import { checkUserIsAdmin } from '../Utils.js'
 import { signOutUserStart } from '../redux/User/user.actions';
+import { selectCartItemsCount } from '../redux/Cart/cart.selectors';
 
 
-const mapState = ({ user }) => ({
-    currentUser: user.currentUser
+const mapState = (state) => ({
+    currentUser: state.user.currentUser,
+    totalNumCartItems: selectCartItemsCount(state)
 });
 
 const Header = (props) => {
-    const { currentUser } = useSelector(mapState)
+    const { currentUser,totalNumCartItems } = useSelector(mapState)
     const isAdmin = checkUserIsAdmin(currentUser)
     const dispatch = useDispatch();
 
@@ -23,7 +26,6 @@ const Header = (props) => {
 
     return (
     <header className='header'>
-
         { isAdmin ? (
             <div className='adminuser'>
                 <ul>
@@ -46,22 +48,23 @@ const Header = (props) => {
                 </ul>
             </nav>
             <nav className='menu'>
-                {currentUser&&(
-                    <ul>
-                        <li><Link to="/account">Account</Link></li>
+                <ul>
+                    <li>
+                        Carro ({totalNumCartItems})
+                    </li>
+                    {currentUser&& [
+                        <li><Link to="/account">Account</Link></li>,
                         <li>
                             <span onClick={signOut}>Logout</span>
                         </li>
-                    </ul>
-                )}
-                {!currentUser && (
-                    <ul>
-                        <li><Link to="/login">Login</Link></li>
+                    ]}
+                    {!currentUser && [
+                        <li><Link to="/login">Login</Link></li>,
                         <li>
                             <Link to="/register">Register</Link>
                         </li>
-                    </ul>
-                )}
+                    ]}
+                </ul>
             </nav>
         </div>
     </header>

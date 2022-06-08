@@ -5,6 +5,7 @@ import './TrabajadorDetailsCard.scss'
 import LightBlueButton from './LightBlueButton'
 import { fetchTrabajadorStart, setTrabajador } from '../../redux/Trabajadores/trabajadores.actions'
 import { getIconDark } from '../../Utils'
+import { addProductToCart } from '../../redux/Cart/cart.actions'
 
 const mapState = ({ trabajadoresData }) => ({
     trabajador: trabajadoresData.trabajador
@@ -25,6 +26,11 @@ const TrabajadorDetailsCard = () => {
 
     },[])
 
+    const handleAddToCart = (trabajador) => {
+        if (!trabajador) return;
+        dispatch(addProductToCart(trabajador))
+    }
+
     return(
         <div className='trabajadoresDetailsCard'>
             <div className='insideDetails'>
@@ -38,7 +44,7 @@ const TrabajadorDetailsCard = () => {
                     </div>
                     <h1>{nombre}</h1>
                     <h2>{precio} €</h2>
-                    <LightBlueButton buttonName={'addtocart'} buttonclick={()=>{console.log('test')}} >Añadir al carro</LightBlueButton>
+                    <LightBlueButton buttonName={'addtocart'} buttonclick={()=>handleAddToCart(trabajador)} >Añadir al carro</LightBlueButton>
                 </div>
                 <div className='detailsDesc'>
                     <h3>Descripción :</h3>
