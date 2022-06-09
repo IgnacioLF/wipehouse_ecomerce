@@ -1,0 +1,35 @@
+.checkout{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .checkoutTable{
+        background-color: #00789f;
+        border-radius: 15px;
+        padding: 2rem;
+        text-align: center;
+        th,td {
+            padding: 0 2rem;
+        }
+        .checkoutHeader{
+            color: white;
+            width: 100%;
+            font-size: 2.2rem;
+        }
+        .checkoutTotal {
+            text-align: center;
+            padding: 2rem 0;
+            color: white;
+            font-size: 3rem;
+            h3{
+                padding: 0;
+                margin: 0;
+            }
+        }
+        .checkoutButtons{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+    }
+}

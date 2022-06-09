@@ -50,7 +50,9 @@ const Header = (props) => {
             <nav className='menu'>
                 <ul>
                     <li>
-                        Carro ({totalNumCartItems})
+                        <Link to="/carro" >
+                            Carro ({totalNumCartItems})
+                        </Link>
                     </li>
                     {currentUser&& [
                         <li><Link to="/account">Account</Link></li>,
