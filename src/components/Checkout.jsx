@@ -55,7 +55,7 @@ const Checkout = () => {
                         </tbody>
                     </table>) : (
                     <p>
-                        No tienes ningun trabajador en el carro
+                        El carro esta vacío
                     </p>)}
             </div>
         </div>

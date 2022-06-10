@@ -51,7 +51,7 @@ const Header = (props) => {
                 <ul>
                     <li>
                         <Link to="/carro" >
-                            Carro ({totalNumCartItems})
+                            Mi carrito ({totalNumCartItems})
                         </Link>
                     </li>
                     {currentUser&& [
