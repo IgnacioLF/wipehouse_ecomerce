@@ -13,6 +13,7 @@ import { checkUserIsAdmin } from './Utils.js';
 import Searchpage from './pages/Searchpage.jsx';
 import TrabajadorDetails from './pages/TrabajadorDetails.jsx';
 import Cartpage from './pages/CartPage.jsx';
+import Paymentpage from './pages/Paymentpage.jsx';
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser
@@ -40,6 +41,7 @@ const App = (props) => {
                 <Route path="/search/:filterType" element={<Searchpage />} />
                 <Route path="/trabajador/:trabajadorID" element={<TrabajadorDetails />} />
                 <Route path="/carro" element={<Cartpage />} />
+                <Route path="/payment" element={<Paymentpage />} />
             </Routes>
             </div>
         </div>

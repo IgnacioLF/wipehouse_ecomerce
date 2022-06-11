@@ -1,0 +1,17 @@
+.expiration{
+    border: 2px solid #00789f;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 2rem;
+    input{
+        padding: 0;
+        outline: none;
+        border: none;
+        text-align: center;
+    }
+    
+}

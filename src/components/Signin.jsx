@@ -20,7 +20,7 @@ const Signin = () =>{
     const dispatch = useDispatch();
     const [currentUser,setcurrentUser] = useState(auth.currentUser)
     const [submitError, setSubmitError] = useState('')
-        const [form, setForm] = useState({
+    const [form, setForm] = useState({
         email: "",
         password: "",
     })

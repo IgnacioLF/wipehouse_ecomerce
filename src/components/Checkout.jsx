@@ -20,6 +20,10 @@ const Checkout = () => {
         navigate('/search')
     }
 
+    const handleRealizarPedido = () => {
+        navigate('/payment')
+    }
+
     return (
         <div className='checkout'>
             <h1>Mi Carrito</h1>
@@ -48,7 +52,7 @@ const Checkout = () => {
                                 <td colSpan={5}>
                                     <div className='checkoutButtons'>
                                         <LightBlueButton buttonclick={() => handleContinuarComprando()}>Continuar comprando</LightBlueButton>
-                                        <LightBlueButton>Realizar pedido</LightBlueButton>
+                                        <LightBlueButton buttonclick={() => handleRealizarPedido()}>Realizar pedido</LightBlueButton>
                                     </div>
                                 </td>
                             </tr> 
