@@ -5,12 +5,12 @@ export const handleAddTrabajador = async trabajador => {
     const newTrabjadorRef = doc(collection(db,'trabajadores'))
     return new Promise ((resolve,reject) => {
         setDoc(newTrabjadorRef, trabajador)
-        .then( () => {
-            resolve()
-        })
-        .catch(err => {
-            reject(err)
-        })
+            .then( () => {
+                resolve()
+            })
+            .catch(err => {
+                reject(err)
+            })
     })
 }
 

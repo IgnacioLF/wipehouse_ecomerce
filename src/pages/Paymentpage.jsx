@@ -4,11 +4,26 @@ import SelectLabel from "../components/form/components/SelectLabel"
 import LightBlueButton from "../components/ui/LightBlueButton"
 import { getProvincias } from "../Utils"
 import './Paymentpage.scss'
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import { usePayment } from "../customHooks/usePayment"
 import Errordiv from '../components/ui/Errordiv'
+import { useDispatch,useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
+import { saveOrderHistory} from '../redux/Orders/orders.actions'
+import { createStructuredSelector } from "reselect"
+import { selectCartItems, selectCartItemsCount, selectCartTotal } from '../redux/Cart/cart.selectors';
+
+const mapState = createStructuredSelector({
+    cartItems: selectCartItems,
+    total: selectCartTotal,
+    itemCount: selectCartItemsCount
+
+})
 
 const Paymentpage = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { cartItems, total, itemCount } = useSelector(mapState)
     const [form, setForm] = useState({
         nombre: "",
         apellidos: "",
@@ -23,6 +38,12 @@ const Paymentpage = () => {
         expiryYY: "",
     })
     const { errors, validateForm, onBlurField } = usePayment(form)
+
+    useEffect(() => {
+        if (itemCount<1){
+            navigate('/account')
+        }
+    },[itemCount])
 
     const selectProvinciasOptions = []
     getProvincias.forEach(provincia => {
@@ -53,6 +74,20 @@ const Paymentpage = () => {
         if (!isValid) return;
         console.log('all good')
         // TODO server side Payments API
+        const configOrder = {
+            orderTotal: total,
+            orderItems: cartItems.map(item => {
+                const { documentID, imageURL, nombre, precio, quantity } = item;
+                return {
+                    documentID,
+                    imageURL,
+                    nombre,
+                    precio,
+                    quantity
+                }
+            })
+        }
+        dispatch(saveOrderHistory(configOrder))
     }
 
     return(
@@ -60,10 +95,16 @@ const Paymentpage = () => {
             <div className="paymentwrap">
                 <form onSubmit={handleOnSubmit}>
                     <h2 className="headpayment">Datos personales</h2>
-                    <InputLabel label={'Nombre'} inputtype={'text'} inputname={'nombre'} inputvalue={form.nombre} inputonchange={onUpdateField} inputonBlur={onBlurField} errorform={errors.nombre.touched && errors.nombre.error ? true : null}/>
-                    {errors.nombre.touched && errors.nombre.error ? (<Errordiv mensaje={errors.nombre.message} />) : null}
-                    <InputLabel label={'Apellidos'} inputtype={'text'} inputname={'apellidos'} inputvalue={form.apellidos}inputonchange={onUpdateField} inputonBlur={onBlurField} errorform={errors.apellidos.touched && errors.apellidos.error ? true : null}/>
-                    {errors.apellidos.touched && errors.apellidos.error ? (<Errordiv mensaje={errors.apellidos.message} />) : null}
+                    <div className="insidewrapPayment">
+                        <div>
+                            <InputLabel label={'Nombre'} inputtype={'text'} inputname={'nombre'} inputvalue={form.nombre} inputonchange={onUpdateField} inputonBlur={onBlurField} errorform={errors.nombre.touched && errors.nombre.error ? true : null}/>
+                            {errors.nombre.touched && errors.nombre.error ? (<Errordiv mensaje={errors.nombre.message} />) : null}
+                        </div>
+                        <div>
+                            <InputLabel label={'Apellidos'} inputtype={'text'} inputname={'apellidos'} inputvalue={form.apellidos}inputonchange={onUpdateField} inputonBlur={onBlurField} errorform={errors.apellidos.touched && errors.apellidos.error ? true : null}/>
+                            {errors.apellidos.touched && errors.apellidos.error ? (<Errordiv mensaje={errors.apellidos.message} />) : null}
+                        </div>
+                    </div>
                     <InputLabel label={'DNI'} inputtype={'text'} inputname={'dni'} inputvalue={form.dni} inputonchange={onUpdateField} inputonBlur={onBlurField} errorform={errors.dni.touched && errors.dni.error ? true : null}/>
                     {errors.dni.touched && errors.dni.error ? (<Errordiv mensaje={errors.dni.message} />) : null}
                     <InputLabel label={'Teléfono'} inputtype={'text'} inputname={'telefono'} inputvalue={form.telefono} inputonchange={onUpdateField} inputonBlur={onBlurField} errorform={errors.telefono.touched && errors.telefono.error ? true : null}/>

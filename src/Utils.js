@@ -56,3 +56,14 @@ export const getProvincias = ['Álava','Albacete','Alicante','Almería','Asturia
 'Guipúzcoa','Huelva','Huesca','Islas Baleares','Jaén','León','Lérida','Lugo','Madrid','Málaga','Murcia','Navarra',
 'Orense','Palencia','Las Palmas','Pontevedra','La Rioja','Salamanca','Segovia','Sevilla','Soria','Tarragona',
 'Santa Cruz de Tenerife','Teruel','Toledo','Valencia','Valladolid','Vizcaya','Zamora','Zaragoza']
+
+export const getFormatedDate = (date) => {
+    const day = date.getDate()
+    const month = date.getMonth() + 1
+    const year = date.getFullYear()
+    if(month < 10){
+        return(`${day}-0${month}-${year}`)
+    }else{
+        return(`${day}-${month}-${year}`)
+    }
+}
