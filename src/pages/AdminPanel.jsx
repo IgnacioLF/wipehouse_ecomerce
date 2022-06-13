@@ -1,10 +1,10 @@
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { checkUserIsAdmin } from "../Utils";
 import { Navigate, Link } from 'react-router-dom';
 import SideNavAdmin from "../components/SideNavAdmin";
-import { auth } from '../firebase/utils';
 import AddProductsAdmin from "../components/AddProductsAdmin";
 import './AdminPanel.scss'
+import { signOutUserStart } from "../redux/User/user.actions";
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser
@@ -13,6 +13,11 @@ const mapState = ({ user }) => ({
 const AdminPanel = () => {
     const { currentUser } = useSelector(mapState)
     const isAdmin = checkUserIsAdmin(currentUser)
+    const dispatch = useDispatch();
+
+    const signOut = () => {
+        dispatch(signOutUserStart())
+    }
 
     return (
     <div className="adminPannel">
@@ -24,7 +29,7 @@ const AdminPanel = () => {
                         Home
                     </Link>
                 </li>
-                <li onClick={() => { auth.signOut()}}>
+                <li onClick={signOut}>
                     Sing out
                 </li>
             </ul>

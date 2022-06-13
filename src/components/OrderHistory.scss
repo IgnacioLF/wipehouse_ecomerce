@@ -1,0 +1,30 @@
+.orderHistoryTable {
+    background-color: #2c3340;
+    padding: 0 2rem;
+    border-radius: 15px;
+    text-align: center;
+    border-spacing: 0 10px;
+    td{
+        padding: 2rem;
+        color: white;
+    }
+    th {
+        padding: 1rem;
+        color: white;
+    }
+    tbody > tr  {
+        background-color: #00789f; 
+    }
+    .firsttd {
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+    }
+    .lasttd {
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+    tbody>tr:hover {
+        background-color: #47c9f3;
+        cursor: pointer;
+    }
+}

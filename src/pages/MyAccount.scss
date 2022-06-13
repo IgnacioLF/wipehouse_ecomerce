@@ -1,0 +1,14 @@
+.myaccount {
+    display: grid;
+    height: 88.6vh;
+    grid-template-columns: 1fr 4fr;
+    grid-template-areas: 'SideNavAdmin content';
+    h1 {
+        text-align: center;
+    }
+    .contentMyaccount{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

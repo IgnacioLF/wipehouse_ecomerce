@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import './Header.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import logoimage from '../assets/logo.png';
@@ -55,14 +54,14 @@ const Header = (props) => {
                         </Link>
                     </li>
                     {currentUser&& [
-                        <li><Link to="/account">Account</Link></li>,
-                        <li>
+                        <li key={1}><Link to="/account">Account</Link></li>,
+                        <li key={2}>
                             <span onClick={signOut}>Logout</span>
                         </li>
                     ]}
                     {!currentUser && [
-                        <li><Link to="/login">Login</Link></li>,
-                        <li>
+                        <li key={1} ><Link to="/login">Login</Link></li>,
+                        <li key={2} >
                             <Link to="/register">Register</Link>
                         </li>
                     ]}

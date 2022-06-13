@@ -66,4 +66,4 @@ export const getFormatedDate = (date) => {
     }else{
         return(`${day}-${month}-${year}`)
     }
-}
+} 
