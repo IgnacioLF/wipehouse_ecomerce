@@ -11,7 +11,7 @@ import OrderHistory from '../components/OrderHistory';
 
 const mapState = ({ user, orderData }) => ({
     currentUser: user.currentUser,
-     orderHistory: orderData.orderHistory.data 
+    orderHistory: orderData.orderHistory.data 
 });
 
 const MyAccount = () => {

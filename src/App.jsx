@@ -14,6 +14,7 @@ import Searchpage from './pages/Searchpage.jsx';
 import TrabajadorDetails from './pages/TrabajadorDetails.jsx';
 import Cartpage from './pages/CartPage.jsx';
 import Paymentpage from './pages/Paymentpage.jsx';
+import Orderpage from './pages/Orderpage.jsx';
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser
@@ -42,6 +43,7 @@ const App = (props) => {
                 <Route path="/trabajador/:trabajadorID" element={<TrabajadorDetails />} />
                 <Route path="/carro" element={<Cartpage />} />
                 <Route path="/payment" element={<Paymentpage />} />
+                <Route path="/order/:orderID" element={<Orderpage />} />
             </Routes>
             </div>
         </div>

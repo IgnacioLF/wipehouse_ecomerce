@@ -28,7 +28,7 @@ const TrabajadorCard = ({trabajador}) => {
                     <li><span>{categoria}</span></li>
                     <li className='middleCard'>
                         <span>{nombre}</span>
-                        <span className='precioCard'>{precio} €</span>
+                        <span className='precioCard'>{precio}€</span>
                     </li>
                 </ul>
                 <LightBlueButton buttonName={'addtocart'} buttonclick={() => handeAddToCart(trabajador)} >Añadir al carro</LightBlueButton>

@@ -1,7 +1,9 @@
 import './OrderHistory.scss'
 import { getFormatedDate } from "../Utils"
+import { useNavigate } from 'react-router-dom'
 
 const OrderHistory = ({ orders }) => {
+    const navigate = useNavigate();
     // TODO onclick pedido details
     if (!orders) return
     return(
@@ -19,7 +21,7 @@ const OrderHistory = ({ orders }) => {
                     const createdDate = new Date(orderCreatedDate.seconds * 1000 + orderCreatedDate.nanoseconds/1000000)
                     const formatedDate = getFormatedDate(createdDate)
                     return(
-                        <tr key={pos}>
+                        <tr key={pos} onClick={() => navigate(`/order/${documentID}`)}>
                             <td className='firsttd'>{formatedDate}</td>
                             <td>{documentID}</td>
                             <td className='lasttd'>{orderTotal}€</td>

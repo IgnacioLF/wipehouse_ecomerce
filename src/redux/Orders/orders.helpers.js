@@ -1,5 +1,5 @@
 import { db } from "../../firebase/utils";
-import { doc, setDoc, collection, query, orderBy, where, getDocs} from "firebase/firestore";
+import { doc, setDoc, collection, query, orderBy, where, getDocs, getDoc} from "firebase/firestore";
 
 export const handleSaveOrder = order => {
     const newOredersRef = doc(collection(db,'pedidos'))
@@ -34,6 +34,23 @@ export const hangleGetUserOrderHistory = uid => {
                 resolve({ data })
             })
             .catch( err => {
+                reject(err)
+            })
+    })
+}
+
+export const handleGetOrder = orderID => {
+    return new Promise((resolve,reject) => {
+        getDoc(doc(db,'pedidos',orderID))
+            .then(snapshot => {
+                if (snapshot.exists) {
+                    resolve({
+                        ...snapshot.data(),
+                        documentID: orderID
+                    })
+                }
+            })
+            .catch(err => {
                 reject(err)
             })
     })

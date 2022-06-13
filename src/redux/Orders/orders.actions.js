@@ -14,3 +14,13 @@ export const setUserOrderHistory = history => ({
     type: ordersTypes.SET_USER_ORDER_HISTORY,
     payload: history
 })
+
+export const getOrderDetailsStart = orderID => ({
+    type: ordersTypes.GET_ORDER_DETAILS_START,
+    payload: orderID
+})
+
+export const setOrderDeetails = order => ({
+    type: ordersTypes.SET_ORDER_DETAILS,
+    payload: order
+})
