@@ -5,7 +5,10 @@ import { createStructuredSelector } from 'reselect';
 import LightBlueButton from './ui/LightBlueButton';
 import CheckoutItem from './CheckoutItem';
 import { useNavigate } from 'react-router-dom';
+import { auth } from '../firebase/utils'
 import './Checkout.scss'
+import { useState } from 'react';
+import Errordiv from './ui/Errordiv';
 
 const mapState = createStructuredSelector({
     cartItems: selectCartItems,
@@ -15,12 +18,18 @@ const mapState = createStructuredSelector({
 const Checkout = () => {
     const navigate = useNavigate();
     const { cartItems, total } = useSelector(mapState)
+    const [ error, setError ] = useState(null);
+
 
     const handleContinuarComprando = () => {
         navigate('/search')
     }
 
     const handleRealizarPedido = () => {
+        if (!auth.currentUser ) {
+            setError('Debe estar logeado para poder realizar el pedido')
+            return
+        }
         navigate('/payment')
     }
 
@@ -56,6 +65,13 @@ const Checkout = () => {
                                     </div>
                                 </td>
                             </tr> 
+                            { error ? (
+                                <tr>
+                                    <td colSpan={5} >
+                                        <Errordiv mensaje={error}/>
+                                    </td>
+                                </tr>
+                            ) : null}
                         </tbody>
                     </table>) : (
                     <p>

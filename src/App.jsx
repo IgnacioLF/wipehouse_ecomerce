@@ -15,6 +15,7 @@ import TrabajadorDetails from './pages/TrabajadorDetails.jsx';
 import Cartpage from './pages/CartPage.jsx';
 import Paymentpage from './pages/Paymentpage.jsx';
 import Orderpage from './pages/Orderpage.jsx';
+import ResetPasswordpage from './pages/ResetPasswordpage.jsx';
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser
@@ -36,6 +37,7 @@ const App = (props) => {
                 <Route exact path="/" element={<Homepage />} />
                 <Route path="/register" element={<Registration />} />
                 <Route path="/login" element={<Loginpage />} />
+                <Route path="/resetpassword" element={<ResetPasswordpage />} />
                 <Route path="/account" element={<MyAccount />} />
                 <Route path="/adminpanel" element={<AdminPanel />} />
                 <Route exact path="/search" element={<Searchpage />} />

@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 
 const OrderHistory = ({ orders }) => {
     const navigate = useNavigate();
-    // TODO onclick pedido details
     if (!orders) return
     return(
         <table className="orderHistoryTable">

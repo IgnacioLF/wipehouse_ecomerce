@@ -72,7 +72,6 @@ const Paymentpage = () => {
         e.preventDefault();
         const { isValid } = validateForm({form, errors, forceTouchErrors: true});
         if (!isValid) return;
-        console.log('all good')
         // TODO server side Payments API
         const configOrder = {
             orderTotal: total,

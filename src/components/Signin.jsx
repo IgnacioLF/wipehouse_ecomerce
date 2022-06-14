@@ -3,7 +3,7 @@ import './Signin.scss';
 import { auth } from '../firebase/utils';
 import { useState, useEffect } from 'react';
 import Errordiv from './ui/Errordiv'
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import InputLabel from './form/components/InputLabel';
 import { useSigninValidator } from '../customHooks/useSigninValidator';
 import { async } from '@firebase/util';
@@ -16,6 +16,7 @@ const mapState = ({ user }) => ({
 });
 
 const Signin = () =>{
+    const navigate = useNavigate();
     const { signInError } = useSelector(mapState)
     const dispatch = useDispatch();
     const [currentUser,setcurrentUser] = useState(auth.currentUser)
@@ -33,6 +34,10 @@ const Signin = () =>{
     auth.onAuthStateChanged(userAuth =>{
         setcurrentUser(auth.currentUser)
     })
+
+    const handleResetPassword = () => {
+        navigate('/resetpassword')
+    }
 
     const onUpdateField= (e) => {
         const field = e.target.name;
@@ -68,6 +73,7 @@ const Signin = () =>{
                     <InputLabel label={'Contraseña'} inputtype={'password'} inputname={'password'} inputvalue={form.password} inputonchange={onUpdateField} inputonBlur={onBlurField} errorform={errors.password.touched && errors.password.error ? true : null}/>
                     {errors.password.touched && errors.password.error ? (<Errordiv mensaje={errors.password.message} />) : null}
                     {submitError ? (<Errordiv mensaje={submitError} />) : null}
+                    {<a onClick={() => handleResetPassword()}>¿Olvidaste tu contraseña?</a>}
                     <BlueButton type={'submit'}>Login</BlueButton>
                 </form>
                 <BlueButton type={'button'} buttonclick={()=> dispatch(googleSignInStart())}>Sign in with Goole</BlueButton>

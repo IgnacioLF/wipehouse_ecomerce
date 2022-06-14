@@ -90,10 +90,8 @@ const AddProductsAdmin = () => {
         e.preventDefault();
         const { isValid } = validateForm({form, errors, forceTouchErrors: true});
         if (!isValid) return;
-        console.log('all good')
         dispatch(addTrabajadorStart(form.categoria, form.nombre, form.imageURL, form.precio, form.descripcion))
         restetForm()
-
     }
 
     return (

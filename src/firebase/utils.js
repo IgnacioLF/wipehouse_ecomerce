@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from "./config";
 import firebase from 'firebase/compat/app';
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
-import { getAuth , GoogleAuthProvider , signInWithPopup ,createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { getAuth , GoogleAuthProvider , signInWithPopup ,createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth'
 import { async } from '@firebase/util';
 
 
@@ -83,6 +83,18 @@ export const getCurrentUser = () => {
             unsuscribe();
             resolve(userAuth)
         },reject);
+    })
+}
+
+export const sendResetPassword = (email) => {
+    return new Promise ((resolve,reject) => {
+        sendPasswordResetEmail(auth, email)
+            .then(() => {
+                resolve(true)
+            })
+            .catch( err =>{
+                reject(err)
+            })
     })
 }
 
