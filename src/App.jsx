@@ -16,6 +16,7 @@ import Cartpage from './pages/CartPage.jsx';
 import Paymentpage from './pages/Paymentpage.jsx';
 import Orderpage from './pages/Orderpage.jsx';
 import ResetPasswordpage from './pages/ResetPasswordpage.jsx';
+import Footer from './components/Footer.jsx';
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser
@@ -48,6 +49,7 @@ const App = (props) => {
                 <Route path="/order/:orderID" element={<Orderpage />} />
             </Routes>
             </div>
+            <Footer />
         </div>
     )
 

@@ -73,7 +73,7 @@ const Signin = () =>{
                     <InputLabel label={'Contraseña'} inputtype={'password'} inputname={'password'} inputvalue={form.password} inputonchange={onUpdateField} inputonBlur={onBlurField} errorform={errors.password.touched && errors.password.error ? true : null}/>
                     {errors.password.touched && errors.password.error ? (<Errordiv mensaje={errors.password.message} />) : null}
                     {submitError ? (<Errordiv mensaje={submitError} />) : null}
-                    {<a onClick={() => handleResetPassword()}>¿Olvidaste tu contraseña?</a>}
+                    <a onClick={() => handleResetPassword()}>¿Olvidaste tu contraseña?</a>
                     <BlueButton type={'submit'}>Login</BlueButton>
                 </form>
                 <BlueButton type={'button'} buttonclick={()=> dispatch(googleSignInStart())}>Sign in with Goole</BlueButton>

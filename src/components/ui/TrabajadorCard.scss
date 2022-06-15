@@ -1,5 +1,8 @@
 .trabajadorCard {
-    background-color: #00789f;
+    background:
+    -webkit-linear-gradient(45deg,
+        #4c6aa3,
+        #00c1ff 99%);
     margin: 1.5rem;
     display: grid;
     grid-template-columns: 1fr 3fr;

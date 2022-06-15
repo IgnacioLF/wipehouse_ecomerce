@@ -1,7 +1,10 @@
 .insideDetails{
-    margin: 2rem 8.5rem;
+    margin: 5rem 8.5rem;
     padding: 1.5rem;
-    background-color: #00789f;
+    background:
+            -webkit-linear-gradient(45deg,
+                #4c6aa3,
+                #00c1ff 99%);
     border-radius: 15px;
     box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.5);
     display: grid;
