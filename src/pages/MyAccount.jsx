@@ -6,6 +6,7 @@ import { signOutUserStart } from '../redux/User/user.actions';
 import { useEffect } from 'react';
 import { getUserOrderHistory } from '../redux/Orders/orders.actions'
 import OrderHistory from '../components/OrderHistory';
+import { checkUserIsAdmin } from '../Utils';
 
 
 
@@ -17,6 +18,7 @@ const mapState = ({ user, orderData }) => ({
 const MyAccount = () => {
     const { currentUser, orderHistory } = useSelector(mapState)
     const dispatch = useDispatch();
+    const isAdmin = checkUserIsAdmin(currentUser)
 
     useEffect(() => {
         dispatch(getUserOrderHistory(currentUser.id))
@@ -26,7 +28,7 @@ const MyAccount = () => {
         dispatch(signOutUserStart())
     }
     return(
-    <div className='myaccount'>
+    <div className={isAdmin ? ('adminacc myaccount') : 'useracc myaccount'}>
         {!currentUser ? (<Navigate to="/login"/>) : null}
         <SideNavAdmin>
             <ul>

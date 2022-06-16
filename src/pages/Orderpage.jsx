@@ -5,6 +5,7 @@ import { getOrderDetailsStart } from '../redux/Orders/orders.actions'
 import { Navigate, useParams, useNavigate } from 'react-router-dom';
 import SideNavAdmin from '../components/SideNavAdmin'
 import { signOutUserStart } from '../redux/User/user.actions';
+import { checkUserIsAdmin } from '../Utils';
 
 const mapState = ({orderData, user}) => ({
     currentUser: user.currentUser,
@@ -17,6 +18,7 @@ const Orderpage = () => {
     const { orderDetails, currentUser } = useSelector(mapState)
     const { orderTotal, orderItems } = orderDetails
     const navigate = useNavigate();
+    const isAdmin = checkUserIsAdmin(currentUser)
 
     useEffect(() => {
         dispatch(getOrderDetailsStart(orderID))
@@ -28,7 +30,7 @@ const Orderpage = () => {
 
     if (!orderItems) return
     return(
-        <div className='orderPage'>
+        <div className={isAdmin ? ('orderPage adminacc') : 'orderPage useracc'}>
             {!currentUser ? (<Navigate to="/login"/>) : null}
             <SideNavAdmin>
                 <ul>

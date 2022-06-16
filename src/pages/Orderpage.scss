@@ -1,7 +1,7 @@
 .orderPage {
     display: grid;
-    height: 88.6vh;
     grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr;
     grid-template-areas: 'SideNavAdmin content';
     h1 {
         text-align: center;

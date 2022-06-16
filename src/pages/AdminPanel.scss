@@ -1,6 +1,8 @@
 .adminPannel {
     display: grid;
-    height: 88.6vh;
     grid-template-columns: 1fr 4fr;
     grid-template-areas: 'SideNavAdmin content';
+    .content{
+        margin-bottom: 2rem;
+    }
 }

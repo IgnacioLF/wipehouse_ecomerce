@@ -1,6 +1,5 @@
 .myaccount {
     display: grid;
-    height: 73.2vh;
     grid-template-columns: 1fr 4fr;
     grid-template-areas: 'SideNavAdmin content';
     h1 {
@@ -11,4 +10,10 @@
         flex-direction: column;
         align-items: center;
     }
+}
+.adminacc{
+    height: 73.2vh;
+}
+.useracc{
+    height: 77.3vh;
 }

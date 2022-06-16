@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { checkUserIsAdmin } from '../Utils.js'
 import { signOutUserStart } from '../redux/User/user.actions';
 import { selectCartItemsCount } from '../redux/Cart/cart.selectors';
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 
 const mapState = (state) => ({
@@ -42,27 +43,28 @@ const Header = (props) => {
             </div>
             <nav className='middlemenu'>
                 <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/search">Buscar</Link></li>
+                    <li><Link to="/"><i className="bi bi-house"></i>Home</Link></li>
+                    <li><Link to="/search"><i className="bi bi-search"></i>Buscar</Link></li>
                 </ul>
             </nav>
             <nav className='menu'>
                 <ul>
                     <li>
                         <Link to="/carro" >
+                            <i className="bi bi-cart"></i>
                             Mi carrito ({totalNumCartItems})
                         </Link>
                     </li>
                     {currentUser&& [
-                        <li key={1}><Link to="/account">Account</Link></li>,
+                        <li key={1}><Link to="/account"><i className="bi bi-person"></i>Account</Link></li>,
                         <li key={2}>
-                            <span onClick={signOut}>Logout</span>
+                            <span onClick={signOut}><i className="bi bi-box-arrow-left"></i>Logout</span>
                         </li>
                     ]}
                     {!currentUser && [
-                        <li key={1} ><Link to="/login">Login</Link></li>,
+                        <li key={1} ><Link to="/login"><i className="bi bi-box-arrow-in-right"></i>Login</Link></li>,
                         <li key={2} >
-                            <Link to="/register">Register</Link>
+                            <Link to="/register"><i className="bi bi-pencil-square"></i>Register</Link>
                         </li>
                     ]}
                 </ul>
