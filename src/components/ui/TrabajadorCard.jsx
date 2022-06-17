@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import './TrabajadorCard.scss'
 import { addProductToCart } from '../../redux/Cart/cart.actions'
+ import { getIconDark} from '../../Utils'
 
 const TrabajadorCard = ({trabajador}) => {
     const dispatch = useDispatch();
@@ -22,10 +23,13 @@ const TrabajadorCard = ({trabajador}) => {
 
     return ( 
         <div className="trabajadorCard" onClick={cardOnClick}>
-            <img src={imageURL} alt={nombre} />
+            <img className='trabajadorCardImage' src={imageURL} alt={nombre} />
             <div className='trabajadorCardData'>
                 <ul>
-                    <li><span>{categoria}</span></li>
+                    <li className='categoriaCard'>
+                        <img className='iconCard' src={getIconDark(categoria)} />
+                        <span>{categoria}</span>
+                    </li>
                     <li className='middleCard'>
                         <span>{nombre}</span>
                         <span className='precioCard'>{precio}€</span>

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import './TrabajadorDetailsCard.scss'
@@ -6,6 +6,9 @@ import LightBlueButton from './LightBlueButton'
 import { fetchTrabajadorStart, setTrabajador } from '../../redux/Trabajadores/trabajadores.actions'
 import { getIconDark } from '../../Utils'
 import { addProductToCart } from '../../redux/Cart/cart.actions'
+import InputLabel from '../form/components/InputLabel'
+import { useAddCartItem } from '../../customHooks/useAddCartItem'
+import Errordiv from './Errordiv'
 
 const mapState = ({ trabajadoresData }) => ({
     trabajador: trabajadoresData.trabajador
@@ -16,6 +19,10 @@ const TrabajadorDetailsCard = () => {
     const { trabajadorID } = useParams();
     const { trabajador } = useSelector(mapState);
     const { nombre, imageURL, precio, descripcion, categoria } = trabajador; 
+    const [ form, setForm ] = useState({
+        quantity: 1
+    });
+    const {errors, validateForm, onBlurField } = useAddCartItem(form);
 
     useEffect(() => {
         dispatch(fetchTrabajadorStart(trabajadorID))
@@ -26,9 +33,34 @@ const TrabajadorDetailsCard = () => {
 
     },[])
 
-    const handleAddToCart = (trabajador) => {
+    const onUpdateField= (e) => {
+        const field = e.target.name;
+        const nextFormState = {
+            ...form,
+            [field]: e.target.value
+        };
+        setForm(nextFormState);
+        if (errors[field].touched){
+            validateForm({
+                form: nextFormState,
+                errors,
+                field,
+            })
+        }
+    }
+
+    const handleOnSubmit = (e) => {
+        e.preventDefault()
         if (!trabajador) return;
-        dispatch(addProductToCart(trabajador))
+        const { isValid } = validateForm({form, errors, forceTouchErrors: true});
+        if (!isValid) return;
+        const cartItem = {
+            ...trabajador,
+            ...form,
+            quantity: parseInt(form.quantity)
+        }
+        console.log('cartItem', cartItem)
+        dispatch(addProductToCart(cartItem))
     }
 
     return(
@@ -44,7 +76,11 @@ const TrabajadorDetailsCard = () => {
                     </div>
                     <h1>{nombre}</h1>
                     <h2>{precio}€</h2>
-                    <LightBlueButton buttonName={'addtocart'} buttonclick={()=>handleAddToCart(trabajador)} >Añadir al carro</LightBlueButton>
+                    <form onSubmit={handleOnSubmit}>
+                        <InputLabel label={'Cantidad'} inputtype={'number'} inputmin={1} inputname={'quantity'} inputvalue={form.quantity}inputonchange={onUpdateField} inputonBlur={onBlurField} errorform={errors.quantity.touched && errors.quantity.error ? true : null} />
+                        {errors.quantity.touched && errors.quantity.error ? (<Errordiv mensaje={errors.quantity.message} />) : null}
+                        <LightBlueButton type={'submit'} buttonName={'addtocart'} >Añadir al carro</LightBlueButton>
+                    </form>
                 </div>
                 <div className='detailsDesc'>
                     <h3>Descripción :</h3>

@@ -18,6 +18,14 @@ export const handleAddToCart = ({prevCartItems, nextCartItem}) => {
                 } : cartItem
         )
     }
+    if (nextCartItem.quantity>1) {
+        return [
+            ...prevCartItems,
+            {
+                ...nextCartItem,
+            }
+        ]
+    }
 
     return [
         ...prevCartItems,
