@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrabajadoresStart } from '../redux/Trabajadores/trabajadores.actions';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -7,6 +7,8 @@ import TrabajadorCard from './ui/TrabajadorCard';
 import { ProductTypes } from '../Utils';
 import SelectLabel from './form/components/SelectLabel';
 import LoadMore from './LoadMore';
+import "bootstrap-icons/font/bootstrap-icons.css";
+import LightBlueButton from './ui/LightBlueButton';
 
 
 const mapState = ({ trabajadoresData }) => ({
@@ -19,10 +21,12 @@ const TrabajadoresResults = () => {
     const { filterType } = useParams();
     const { trabajadores } = useSelector(mapState); 
     const { data, queryDoc, isLastPage } = trabajadores;
+    const [ filterName, setFilterName ] = useState('')
 
     const handleLoadMore = () => {
         dispatch(fetchTrabajadoresStart({ 
-            filterType, 
+            filterType,
+            filterName, 
             startAfterDoc: queryDoc,
             persistTrabajadores: data
          }))
@@ -32,7 +36,7 @@ const TrabajadoresResults = () => {
     }
 
     useEffect(() => {
-        dispatch(fetchTrabajadoresStart({ filterType }))
+        dispatch(fetchTrabajadoresStart({ filterType, filterName }))
     }, [ filterType ])
 
     const configFilters = [{
@@ -45,6 +49,10 @@ const TrabajadoresResults = () => {
             name: type
         })
     })
+
+    const handleOnClickSearch = () => {
+        dispatch(fetchTrabajadoresStart({ filterType, filterName }))
+    }
 
     const handleFilter = (e) => {
         const nextFilter= e.target.value;
@@ -66,7 +74,14 @@ const TrabajadoresResults = () => {
     return (
         <div className='trabajadoresResults'>
             <h1>Buscar trabajadores</h1>
-            <SelectLabel  selectOptions={configFilters} selectChange={handleFilter} selectValue={filterType} />
+            <div className='resultsSearchBar'>
+                <input type={'text'} placeholder={'Buscar Nombre '} name={'filterName'} value={filterName} onChange={(e) => setFilterName(e.target.value)} />
+                <LightBlueButton buttonclick={handleOnClickSearch}><i className="bi bi-search"></i></LightBlueButton>
+            </div>
+            <div className='resultsCategoriaFilter'>
+                <h2>Categoria : </h2>
+                <SelectLabel  selectOptions={configFilters} selectChange={handleFilter} selectValue={filterType} />
+            </div>
             <div className='insideResults'>
                 { data.map((trabajador, pos) => {
                     return(

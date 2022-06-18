@@ -38,6 +38,7 @@ const AddProductsAdmin = () => {
 
     const handleLoadMore = () => {
         dispatch(fetchTrabajadoresStart({ 
+            pageSize: 3,
             startAfterDoc: queryDoc,
             persistTrabajadores: data
          }))
@@ -48,7 +49,7 @@ const AddProductsAdmin = () => {
 
     useEffect(() => {
         dispatch(
-            fetchTrabajadoresStart()
+            fetchTrabajadoresStart({pageSize: 3})
         );
 
     }, [])

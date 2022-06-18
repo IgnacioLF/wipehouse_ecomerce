@@ -47,7 +47,6 @@ export function* deleteTrabjador({payload}){
 export function* fetchTrabajador ({ payload }) {
     try {
         const trabajador = yield handleFetchTrabajador(payload)
-        console.log('trabajador',trabajador)
         yield put(setTrabajador(trabajador))
 
     } catch (err) {
