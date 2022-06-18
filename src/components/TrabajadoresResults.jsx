@@ -79,7 +79,7 @@ const TrabajadoresResults = () => {
                 <LightBlueButton buttonclick={handleOnClickSearch}><i className="bi bi-search"></i></LightBlueButton>
             </div>
             <div className='resultsCategoriaFilter'>
-                <h2>Categoria : </h2>
+                <h2>Categoría : </h2>
                 <SelectLabel  selectOptions={configFilters} selectChange={handleFilter} selectValue={filterType} />
             </div>
             <div className='insideResults'>

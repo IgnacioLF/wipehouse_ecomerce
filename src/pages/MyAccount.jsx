@@ -7,8 +7,7 @@ import { useEffect } from 'react';
 import { getUserOrderHistory } from '../redux/Orders/orders.actions'
 import OrderHistory from '../components/OrderHistory';
 import { checkUserIsAdmin } from '../Utils';
-
-
+import orderError from '../assets/orderError.png'
 
 const mapState = ({ user, orderData }) => ({
     currentUser: user.currentUser,
@@ -34,17 +33,21 @@ const MyAccount = () => {
             <ul>
                 <li>
                     <Link to="/">
-                        Home
+                        Inicio
                     </Link>
                 </li>
                 <li onClick={signOut}>
-                    Sing out
+                    Salir
                 </li>
             </ul>
         </SideNavAdmin>
         <div className='contentMyaccount'>
             <h1>Historial de pedidos</h1>
-            <OrderHistory  orders={orderHistory} />
+            {orderHistory.length > 0 ? (<OrderHistory  orders={orderHistory} />) :
+            (<div className='orderError'>
+                <p>No tienes ningun pedido realizado</p>
+                <img src={orderError} />
+            </div>)}
         </div>
     </div>
     )

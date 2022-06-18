@@ -4,7 +4,7 @@ const LoadMore = ({
     onLoadMoreEvent = () => { },
 }) => {
     return(
-        <BlueButton buttonclick={() => onLoadMoreEvent()}>Cargar Más</BlueButton>
+        <BlueButton buttonclick={() => onLoadMoreEvent()}>Cargar más</BlueButton>
     )
 }
 

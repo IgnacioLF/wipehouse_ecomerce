@@ -1,6 +1,6 @@
 .about {
     display: flex;
-    background: linear-gradient(307deg, rgba(137, 203, 235, 1) 0%, rgba(204, 231, 242, 1) 75%);
+    /* background: linear-gradient(307deg, rgba(137, 203, 235, 1) 0%, rgba(204, 231, 242, 1) 75%); */
     .render {
         margin-right: 15rem;
         width: 45rem;
@@ -13,6 +13,11 @@
     }
     .insideabout{
         margin-left: 15rem;
+        p {
+            margin: 0 15rem;
+            line-height: 2.5rem;
+            font-size: 2.2rem;
+        }
     }
     h1 {
         text-align: center;
@@ -31,4 +36,45 @@
     display: flex;
     justify-content: space-around;
     padding: 2rem;
+}
+
+.mobileApp{
+    background: linear-gradient(307deg, rgba(137, 203, 235, 1) 0%, rgba(204, 231, 242, 1) 75%);
+    display: flex;
+    .insideMobile{
+        margin-right: 15rem;
+        margin-left: 10rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        h2 {
+            text-align: center;
+            font-size: 4.5rem;
+            color: #2c3340;
+            margin: 0;
+        }
+        img {
+            height: 11rem;
+            width: 30rem;
+        }
+        p {
+            line-height: 2.5rem;
+            font-size: 2.2rem;
+            margin-top: 5rem;
+        }
+    }
+    .mobileMockup{
+        margin-left: 15rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        width: 50rem;
+        height: 50rem;
+        filter: blur(0);
+            -webkit-filter: blur(0);
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+    }
 }

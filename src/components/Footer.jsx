@@ -9,13 +9,13 @@ const Footer = () => {
             <div className='leftFooter'>
                 <div className='footerlogo'>
                     <Link to={'/'}>
-                        <img src={Logo}/>
+                        <img loading='lazy' src={Logo}/>
                     </Link>
                 </div>
                 <div className='lineFooter'></div>
                 <div>
                     <ul>
-                        <li><Link to={'/'}>Home</Link></li>
+                        <li><Link to={'/'}>Inicio</Link></li>
                         <li><Link to={'/search'}>Buscar</Link></li>
                     </ul>
                     <p> © 2022 Wipehouse.  All rights reserved</p>

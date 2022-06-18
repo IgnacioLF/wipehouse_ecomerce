@@ -3,8 +3,12 @@
     grid-template-columns: 1fr 4fr;
     grid-template-rows: 1fr;
     grid-template-areas: 'SideNavAdmin content';
-    h1 {
+    h1,h2 {
         text-align: center;
+        color: #2c3340;
+    }
+    h2 {
+        font-size: 3.5rem;
     }
     .contentOrderPage {
         display: flex;

@@ -35,10 +35,10 @@ const Orderpage = () => {
             <SideNavAdmin>
                 <ul>
                     <li onClick={() => navigate('/')}>
-                        Home
+                        Inicio
                     </li>
                     <li onClick={signOut}>
-                        Sing out
+                        Salir
                     </li>
                 </ul>
             </SideNavAdmin>
@@ -49,8 +49,8 @@ const Orderpage = () => {
                         <tr>
                             <th>Trabajador</th>
                             <th>Nombre</th>
+                            <th>Horas</th>
                             <th>Precio</th>
-                            <th>Cantidad</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,10 +59,10 @@ const Orderpage = () => {
 
                             return(
                                 <tr key={pos} onClick={() => navigate(`/trabajador/${documentID}`)}>
-                                    <td><img src={imageURL}/></td>
+                                    <td><img loading='lazy' src={imageURL}/></td>
                                     <td>{nombre}</td>
-                                    <td>{precio}€</td>
                                     <td>{quantity}</td>
+                                    <td>{precio}€</td>
                                 </tr>
                             )
                         })}

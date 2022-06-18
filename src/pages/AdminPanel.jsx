@@ -26,11 +26,11 @@ const AdminPanel = () => {
             <ul>
                 <li>
                     <Link to="/">
-                        Home
+                        Inicio
                     </Link>
                 </li>
                 <li onClick={signOut}>
-                    Sing out
+                    Salir
                 </li>
             </ul>
         </SideNavAdmin>

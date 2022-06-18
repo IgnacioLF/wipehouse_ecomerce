@@ -30,7 +30,7 @@ const Header = (props) => {
             <div className='adminuser'>
                 <ul>
                     <Link to="/adminpanel">
-                        <li>Admin panel</li>
+                        <li>Panel de administrador</li>
                     </Link>
                 </ul>
             </div>
@@ -38,12 +38,12 @@ const Header = (props) => {
         <div className='bottomheader'>
             <div className='logo'>
                 <Link to="/">
-                    <img src={logoimage} alt="Wipehouse"></img>
+                    <img loading='lazy' src={logoimage} alt="Wipehouse"></img>
                 </Link>
             </div>
             <nav className='middlemenu'>
                 <ul>
-                    <li><Link to="/"><i className="bi bi-house"></i>Home</Link></li>
+                    <li><Link to="/"><i className="bi bi-house"></i>Inicio</Link></li>
                     <li><Link to="/search"><i className="bi bi-search"></i>Buscar</Link></li>
                 </ul>
             </nav>
@@ -56,15 +56,15 @@ const Header = (props) => {
                         </Link>
                     </li>
                     {currentUser&& [
-                        <li key={1}><Link to="/account"><i className="bi bi-person"></i>Account</Link></li>,
+                        <li key={1}><Link to="/account"><i className="bi bi-person"></i>Cuenta</Link></li>,
                         <li key={2}>
-                            <span onClick={signOut}><i className="bi bi-box-arrow-left"></i>Logout</span>
+                            <span onClick={signOut}><i className="bi bi-box-arrow-left"></i>Salir</span>
                         </li>
                     ]}
                     {!currentUser && [
-                        <li key={1} ><Link to="/login"><i className="bi bi-box-arrow-in-right"></i>Login</Link></li>,
+                        <li key={1} ><Link to="/login"><i className="bi bi-box-arrow-in-right"></i>Entrar</Link></li>,
                         <li key={2} >
-                            <Link to="/register"><i className="bi bi-pencil-square"></i>Register</Link>
+                            <Link to="/register"><i className="bi bi-pencil-square"></i>Registrarse</Link>
                         </li>
                     ]}
                 </ul>

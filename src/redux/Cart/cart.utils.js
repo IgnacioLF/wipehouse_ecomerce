@@ -14,7 +14,7 @@ export const handleAddToCart = ({prevCartItems, nextCartItem}) => {
             cartItem.documentID === nextCartItem.documentID 
                 ? {
                     ...cartItem,
-                    quantity: cartItem.quantity + quantityIncrement
+                    quantity: cartItem.quantity + nextCartItem.quantity 
                 } : cartItem
         )
     }

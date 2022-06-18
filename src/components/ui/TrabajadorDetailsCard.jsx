@@ -57,6 +57,7 @@ const TrabajadorDetailsCard = () => {
         const cartItem = {
             ...trabajador,
             ...form,
+            documentID: trabajadorID,
             quantity: parseInt(form.quantity)
         }
         console.log('cartItem', cartItem)
@@ -67,17 +68,17 @@ const TrabajadorDetailsCard = () => {
         <div className='trabajadoresDetailsCard'>
             <div className='insideDetails'>
                 <div className='detailsimage'>
-                    <img src={imageURL} />
+                    <img loading='lazy' src={imageURL} />
                 </div>
                 <div className='detailsNombrePrecioCat'>
                     <div className='detailsCategoria'>
-                        <img src={getIconDark(categoria)} />
+                        <img loading='lazy' src={getIconDark(categoria)} />
                         <span>{categoria}</span>
                     </div>
                     <h1>{nombre}</h1>
-                    <h2>{precio}€</h2>
+                    <h2>{precio}€<span className='precioHora'>/hora</span></h2>
                     <form onSubmit={handleOnSubmit}>
-                        <InputLabel label={'Cantidad'} inputtype={'number'} inputmin={1} inputname={'quantity'} inputvalue={form.quantity}inputonchange={onUpdateField} inputonBlur={onBlurField} errorform={errors.quantity.touched && errors.quantity.error ? true : null} />
+                        <InputLabel label={'Horas'} inputtype={'number'} inputmin={1} inputname={'quantity'} inputvalue={form.quantity}inputonchange={onUpdateField} inputonBlur={onBlurField} errorform={errors.quantity.touched && errors.quantity.error ? true : null} />
                         {errors.quantity.touched && errors.quantity.error ? (<Errordiv mensaje={errors.quantity.message} />) : null}
                         <LightBlueButton type={'submit'} buttonName={'addtocart'} >Añadir al carro</LightBlueButton>
                     </form>

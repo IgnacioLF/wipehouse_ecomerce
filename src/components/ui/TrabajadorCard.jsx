@@ -18,21 +18,25 @@ const TrabajadorCard = ({trabajador}) => {
 
     const handeAddToCart = (trabajador) => {
         if (!trabajador) return;
-        dispatch( addProductToCart(trabajador) )
+        const configItem = {
+            ...trabajador,
+            quantity: 1
+        }
+        dispatch( addProductToCart(configItem) )
     }
 
     return ( 
         <div className="trabajadorCard" onClick={cardOnClick}>
-            <img className='trabajadorCardImage' src={imageURL} alt={nombre} />
+            <img loading='lazy' className='trabajadorCardImage' src={imageURL} alt={nombre} />
             <div className='trabajadorCardData'>
                 <ul>
                     <li className='categoriaCard'>
-                        <img className='iconCard' src={getIconDark(categoria)} />
+                        <img loading='lazy' className='iconCard' src={getIconDark(categoria)} />
                         <span>{categoria}</span>
                     </li>
                     <li className='middleCard'>
                         <span>{nombre}</span>
-                        <span className='precioCard'>{precio}€</span>
+                        <span className='precioCard'>{precio}€<span className='precioHora'>/hora</span></span>
                     </li>
                 </ul>
                 <LightBlueButton buttonName={'addtocart'} buttonclick={() => handeAddToCart(trabajador)} >Añadir al carro</LightBlueButton>

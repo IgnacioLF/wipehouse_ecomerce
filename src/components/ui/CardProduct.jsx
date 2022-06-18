@@ -3,14 +3,14 @@ import LightBlueButton from "./LightBlueButton"
 import { getIcon } from '../../Utils'
 
 
-const CardProduct = ({tittle,desc}) => {
+const CardProduct = ({tittle, buttonOnClick}) => {
 
     return (
         <div className='card'>
-            <img  src={getIcon(tittle)}/>
+            <img loading='lazy' src={getIcon(tittle)} alt={tittle}/>
             <div className='inside'>
                 <h2>{tittle}</h2>
-                <LightBlueButton>Comprar</LightBlueButton>
+                <LightBlueButton buttonclick={buttonOnClick}>Comprar</LightBlueButton>
             </div>
         </div>
     )

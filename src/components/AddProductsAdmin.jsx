@@ -141,7 +141,7 @@ const AddProductsAdmin = () => {
                                             return(
                                                 <tr key={index}>
                                                     <td>
-                                                        <img src={imageURL} />
+                                                        <img loading='lazy' src={imageURL} />
                                                     </td>
                                                     <td>
                                                         {categoria}

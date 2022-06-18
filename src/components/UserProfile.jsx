@@ -11,7 +11,7 @@ const UserProfile = () => {
 
     return (
         <div className="userProfile">
-            <img src={DefaultImageColor} />
+            <img loading='lazy' src={DefaultImageColor} />
             <span>{currentUser ? currentUser.displayName : null}</span>
         </div>
     )

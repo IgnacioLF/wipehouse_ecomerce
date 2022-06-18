@@ -9,6 +9,7 @@ import { auth } from '../firebase/utils'
 import './Checkout.scss'
 import { useState } from 'react';
 import Errordiv from './ui/Errordiv';
+import emptyCart from '../assets/emptyCart.png'
 
 const mapState = createStructuredSelector({
     cartItems: selectCartItems,
@@ -43,7 +44,7 @@ const Checkout = () => {
                             <tr className='checkoutHeader'>
                                 <th>Trabajador</th>
                                 <th>Nombre</th>
-                                <th>Cantidad</th>
+                                <th>Horas</th>
                                 <th>Precio</th>
                                 <th>Eliminar</th>
                             </tr>
@@ -74,9 +75,13 @@ const Checkout = () => {
                             ) : null}
                         </tbody>
                     </table>) : (
-                    <p>
-                        El carro esta vacío
-                    </p>)}
+                    <div className='errorCart'>
+                        <p className='emptyCart'>
+                            El carro esta vacío
+                        </p>
+                        <img src={emptyCart}/>
+                    </div>
+                    )}
             </div>
         </div>
     )
