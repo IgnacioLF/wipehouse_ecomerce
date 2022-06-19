@@ -5,6 +5,7 @@ import { useNavigate} from 'react-router-dom'
 import movilMockup from '../assets/movilMockup.png'
 import dowloadGooglePlay from '../assets/dowloadGooglePlay.png'
 
+
 const Homepage = () => {
     const navigate = useNavigate();
 

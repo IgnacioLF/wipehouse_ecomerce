@@ -4,6 +4,7 @@ footer {
     justify-content: space-around;
     padding: 2rem 8.5rem;
     color: white;
+    gap: 2rem;
     a {
         color: #00789f;
         font-weight: bold;
@@ -16,7 +17,7 @@ footer {
     .leftFooter{
         display: flex;
         .lineFooter{
-            width: 0.2rem;
+            width: 3px;
             height: 100%;
             background-color: #00789f;
             margin-left: 2rem;
@@ -41,6 +42,7 @@ footer {
 
             ul {
                 display: flex;
+                padding: 0;
                 li{
                     margin: 0 2rem;
                 }
@@ -66,5 +68,26 @@ footer {
         p {
             margin: 0;
         }
+    }
+}
+
+@media screen and (max-width: 920px) {
+    footer{
+        a{
+            font-size: 1.8rem;
+        }
+        .rightFooter {
+            div {
+                i {
+                    font-size: 2.2rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 540px) {
+    footer {
+        flex-direction: column;
     }
 }

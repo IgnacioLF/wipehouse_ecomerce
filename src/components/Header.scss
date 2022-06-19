@@ -1,10 +1,10 @@
+
 .header{
     background-color: white;
     box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.301);
     position: fixed;
     width: 100%;
     z-index: 1;
-
     .bottomheader{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -98,4 +98,69 @@
 ul,
 li {
     list-style: none;
+}
+.mobileMenu {
+    display: none;
+    color: #00789f;
+    font-size: 5rem;
+    height: 100%;
+}
+.open{
+    display: block;
+}
+.close{
+    display: none;
+}
+.red {
+    color: red;
+}
+.openMobileMenu{
+    display: none;
+    position: absolute;
+    background-color: lightgray;
+    margin-top: 7.2rem;
+    right: 0;
+    padding: 0rem 4rem;
+    font-size: 2rem;
+    font-weight: bold;
+    li{
+        margin: 1rem 0rem;
+        width: fit-content;
+    }
+    li:hover {
+        color: #47c9f3;
+    }
+}
+
+@media screen and (max-width: 1245px) {
+    .header {
+        .bottomheader {
+            grid-template-columns: 0.5fr 1fr 1fr;
+        }
+    }
+}
+
+@media screen and (max-width: 1039px) {
+    .header {
+        .bottomheader{
+            grid-template-columns: 1fr 1fr;
+            gap: 30%;
+            .middlemenu {
+                display: none;
+            }
+            .menu {
+                display: none;
+            }
+        }
+    }
+    .mobileMenu{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 10rem;
+
+    }
+    .openMobileMenu{
+        display: block;
+    }
 }
