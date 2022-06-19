@@ -3,11 +3,12 @@ import SideNavAdmin from '../components/SideNavAdmin'
 import { Link, Navigate } from 'react-router-dom';
 import './MyAccount.scss'
 import { signOutUserStart } from '../redux/User/user.actions';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getUserOrderHistory } from '../redux/Orders/orders.actions'
 import OrderHistory from '../components/OrderHistory';
 import { checkUserIsAdmin } from '../Utils';
 import orderError from '../assets/orderError.png'
+
 
 const mapState = ({ user, orderData }) => ({
     currentUser: user.currentUser,
@@ -18,10 +19,17 @@ const MyAccount = () => {
     const { currentUser, orderHistory } = useSelector(mapState)
     const dispatch = useDispatch();
     const isAdmin = checkUserIsAdmin(currentUser)
+    const [ orderHistoryLength, setOrderHistoryLength ] = useState(0)
 
     useEffect(() => {
         dispatch(getUserOrderHistory(currentUser.id))
     }, [])
+
+    useEffect(() => {
+        if (orderHistory){
+            setOrderHistoryLength(orderHistory.length)
+        }
+    },[orderHistory])
 
     const signOut = () => {
         dispatch(signOutUserStart())
@@ -43,7 +51,7 @@ const MyAccount = () => {
         </SideNavAdmin>
         <div className='contentMyaccount'>
             <h1>Historial de pedidos</h1>
-            {orderHistory.length > 0 ? (<OrderHistory  orders={orderHistory} />) :
+            {orderHistoryLength > 0 ? (<OrderHistory  orders={orderHistory} />) :
             (<div className='orderError'>
                 <p>No tienes ningun pedido realizado</p>
                 <img src={orderError} />
