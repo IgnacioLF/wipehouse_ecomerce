@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import { useSelector } from 'react-redux'
 import { selectCartItems, selectCartTotal } from '../redux/Cart/cart.selectors';
 import { createStructuredSelector } from 'reselect';
@@ -20,7 +19,6 @@ const Checkout = () => {
     const navigate = useNavigate();
     const { cartItems, total } = useSelector(mapState)
     const [ error, setError ] = useState(null);
-
 
     const handleContinuarComprando = () => {
         navigate('/search')
@@ -50,7 +48,7 @@ const Checkout = () => {
                             </tr>
                             {cartItems.map((item,pos) => {
                                 return(
-                                    <CheckoutItem item={item} pos={pos} />
+                                    <CheckoutItem key={pos} item={item} pos={pos} />
                                 )
                             })}
                             <tr>

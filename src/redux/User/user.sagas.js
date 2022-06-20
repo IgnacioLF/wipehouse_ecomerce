@@ -14,7 +14,7 @@ import { getDoc } from "firebase/firestore";
             ...snapshot.data()
         }))
     }catch (err) {
-         console.log(err);
+        /* console.log(err); */
     }
 }
  
@@ -44,7 +44,7 @@ export function* isUserAuthenticated() {
         if (!userAuth) return;
         yield getSnapshotFromUserAuth(userAuth);
     }catch (err) {
-        // console.log(err);
+        /*  console.log(err); */
     }
 
 }
@@ -75,7 +75,6 @@ export function* signUpUser ({ payload: nombre, email, password }) {
     try {
         const { user } = yield createUserWithEmailAndPassword(auth, email, password)
         user.displayName = nombre
-        console.log('user',user)
         yield getSnapshotFromUserAuth(user)
     } catch (err) {
         const errorCode = err.code

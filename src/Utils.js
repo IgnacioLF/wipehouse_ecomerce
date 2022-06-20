@@ -7,7 +7,6 @@ import cortacespedIconDark from './assets/cortacespedicon_darkblue.png'
 import limpiadorIconDark from './assets/limpiadoricon_darkblue.png'
 import mantenimientoIconDark from './assets/mantenimientoicon_darkblue.png'
 
-
 export const ProductTypes = [
     'Cocinero',
     'Limpieza del hogar',

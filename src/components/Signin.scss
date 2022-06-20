@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     .wrap{
-        padding: 2rem;
+        padding: 2rem 4rem;
         margin:5rem;
         background-color: lightgray;
         border-radius: 15px;
@@ -13,8 +13,9 @@
         justify-content: center;
         flex-direction: column;
         h2{
-            margin-top: 0px;
-            margin-bottom: 2rem;
+            margin-top: 0;
+            font-size: 3rem;
+            margin-bottom: 0;
         }
         form {
             button {

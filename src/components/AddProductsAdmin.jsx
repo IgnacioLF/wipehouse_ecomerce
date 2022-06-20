@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import RedButton from './ui/RedButton';
 import LightBlueButton from './ui/LightBlueButton';
 import BlueButton from './ui/BlueButton';
@@ -14,7 +13,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addTrabajadorStart, deleteTrabjadorStart, fetchTrabajadoresStart } from '../redux/Trabajadores/trabajadores.actions';
 import LoadMore from './LoadMore';
 import TextAreaLabel from './form/components/TextAreaLabel';
-
 
 const mapState = ({ trabajadoresData }) => ({
     trabajadores: trabajadoresData.trabajadores
@@ -36,6 +34,13 @@ const AddProductsAdmin = () => {
     const ProductTypesOptions = []
     const { data, isLastPage, queryDoc } = trabajadores
 
+    useEffect(() => {
+        dispatch(
+            fetchTrabajadoresStart({pageSize: 3})
+        );
+
+    }, [])
+
     const handleLoadMore = () => {
         dispatch(fetchTrabajadoresStart({ 
             pageSize: 3,
@@ -43,17 +48,11 @@ const AddProductsAdmin = () => {
             persistTrabajadores: data
          }))
     }
+
     const configLoadMore = {
         onLoadMoreEvent: handleLoadMore,
     }
 
-    useEffect(() => {
-        dispatch(
-            fetchTrabajadoresStart({pageSize: 3})
-        );
-
-    }, [])
-    
     ProductTypes.forEach(type => {
         ProductTypesOptions.push({
             value: type,

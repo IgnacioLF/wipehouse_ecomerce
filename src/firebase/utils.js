@@ -2,26 +2,14 @@ import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from "./config";
 import firebase from 'firebase/compat/app';
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
-import { getAuth , GoogleAuthProvider , signInWithPopup ,createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth'
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth'
 import { async } from '@firebase/util';
-
-
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const auth = getAuth(app);
 export const firestore = firebase.firestore;
 
-/*
-NOT USED
-const provider = new GoogleAuthProvider()
-export const signInWithGoogle = () => {
-    signInWithPopup(auth, provider)
-}; */
-
-/**
-    create user document if not exist
-*/
 export const handleUserProfile = async( userAuth, additionalData ) => {
     if (userAuth!=null) {
         const {uid} = userAuth;
@@ -47,9 +35,6 @@ export const handleUserProfile = async( userAuth, additionalData ) => {
     }
 }
 
-/**
- * create user from signup from
- */
 export const createUserfromregister = async(nombre, email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -60,15 +45,11 @@ export const createUserfromregister = async(nombre, email, password) => {
         })
 }
 
-/**
- * login with email and password
- */
 export const signinWithEmail = async(email,password) =>{
     signInWithEmailAndPassword (auth, email, password)
         .catch((error) => {
             const errorCode = error.code;
             if (errorCode === 'auth/wrong-password'){
-                console.log('abc')
                 error = 'Email o contraseña invalidos'
             }
             console.log(errorCode);

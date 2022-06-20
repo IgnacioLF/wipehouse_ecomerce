@@ -9,18 +9,12 @@ import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUpUserStart } from '../redux/User/user.actions'
 
-
 const mapState = ({ user }) => ({
     signUpError: user.signUpError
 });
 
 const Signup = () => {
-    // to check
     const [currentUser,setcurrentUser] = useState(auth.currentUser)
-        auth.onAuthStateChanged(userAuth =>{
-        setcurrentUser(auth.currentUser)
-    })
-    
     const [form , setForm] = useState({
         nombre: "",
         email: "",
@@ -31,9 +25,14 @@ const Signup = () => {
     const { signUpError } = useSelector(mapState)
     const dispatch = useDispatch();
     const [submitError, setSubmitError] = useState('')
+
     useEffect(() => {
         setSubmitError(signUpError)
     } , [signUpError])
+
+    auth.onAuthStateChanged(userAuth =>{
+        setcurrentUser(auth.currentUser)
+    })
 
     const onUpdateField = e => {
         const field = e.target.name;
@@ -50,6 +49,7 @@ const Signup = () => {
             })
         }
     };
+
     const onSubmitForm = e => {
         e.preventDefault();
         const { isValid } = validateForm({form, errors, forceTouchErrors: true});

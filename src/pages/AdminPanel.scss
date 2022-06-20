@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 4fr;
     grid-template-areas: 'SideNavAdmin content';
+    height: 100%;
     .content{
         margin-bottom: 2rem;
     }

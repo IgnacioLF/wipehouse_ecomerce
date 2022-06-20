@@ -1,6 +1,7 @@
 import DefaultImageColor from '../assets/DefaultImageColor.png'
 import { useSelector } from 'react-redux';
 import './UserProfile.scss'
+
 const mapState = ({ user }) => ({
     currentUser: user.currentUser
 });

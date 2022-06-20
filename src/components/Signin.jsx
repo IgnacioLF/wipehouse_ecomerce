@@ -10,7 +10,6 @@ import { async } from '@firebase/util';
 import { useDispatch, useSelector } from 'react-redux';
 import { emailSignInStart, googleSignInStart } from '../redux/User/user.actions.js';
 
-
 const mapState = ({ user }) => ({
     signInError: user.signInError
 });
@@ -62,24 +61,25 @@ const Signin = () =>{
     }
     
     return (
-    <div className='signin'>
-        { currentUser &&(<Navigate to="/"/>)}
-        <div className='wrap'>
-            <h2>Login</h2>
-            <div className='formWrap'>
-                <form onSubmit={onSubmitForm}>
-                    <InputLabel label={'Email'} inputtype={'email'} inputname={'email'} inputvalue={form.email} inputonchange={onUpdateField} inputonBlur={onBlurField} errorform={errors.email.touched && errors.email.error ? true : null} />
-                    {errors.email.touched && errors.email.error ? (<Errordiv mensaje={errors.email.message} />) : null}
-                    <InputLabel label={'Contraseña'} inputtype={'password'} inputname={'password'} inputvalue={form.password} inputonchange={onUpdateField} inputonBlur={onBlurField} errorform={errors.password.touched && errors.password.error ? true : null}/>
-                    {errors.password.touched && errors.password.error ? (<Errordiv mensaje={errors.password.message} />) : null}
-                    {submitError ? (<Errordiv mensaje={submitError} />) : null}
-                    <a onClick={() => handleResetPassword()}>¿Olvidaste tu contraseña?</a>
-                    <BlueButton type={'submit'}>Login</BlueButton>
-                </form>
-                <BlueButton type={'button'} buttonclick={()=> dispatch(googleSignInStart())}>Sign in with Goole</BlueButton>
+        <div className='signin'>
+            {currentUser ? (<Navigate to="/"/>) : null}
+            <div className='wrap'>
+                <h2>Login</h2>
+                <div className='formWrap'>
+                    <form onSubmit={onSubmitForm}>
+                        <InputLabel label={'Email'} inputtype={'email'} inputname={'email'} inputvalue={form.email} inputonchange={onUpdateField} inputonBlur={onBlurField} errorform={errors.email.touched && errors.email.error ? true : null} />
+                        {errors.email.touched && errors.email.error ? (<Errordiv mensaje={errors.email.message} />) : null}
+                        <InputLabel label={'Contraseña'} inputtype={'password'} inputname={'password'} inputvalue={form.password} inputonchange={onUpdateField} inputonBlur={onBlurField} errorform={errors.password.touched && errors.password.error ? true : null}/>
+                        {errors.password.touched && errors.password.error ? (<Errordiv mensaje={errors.password.message} />) : null}
+                        {submitError ? (<Errordiv mensaje={submitError} />) : null}
+                        <a onClick={() => handleResetPassword()}>¿Olvidaste tu contraseña?</a>
+                        <BlueButton type={'submit'}>Login</BlueButton>
+                    </form>
+                    <BlueButton type={'button'} buttonclick={()=> dispatch(googleSignInStart())}>Sign in with Goole</BlueButton>
+                </div>
             </div>
         </div>
-    </div>)
+    )
 }
 
 export default Signin;

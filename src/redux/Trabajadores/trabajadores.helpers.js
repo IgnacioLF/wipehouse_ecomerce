@@ -1,5 +1,5 @@
 import { db } from "../../firebase/utils";
-import { where, orderBy, query, doc, setDoc, collection, getDocs, deleteDoc, limit, startAfter, getDoc } from "firebase/firestore";
+import { where, query, doc, setDoc, collection, getDocs, deleteDoc, limit, startAfter, getDoc } from "firebase/firestore";
 
 export const handleAddTrabajador = async trabajador => {
     const newTrabjadorRef = doc(collection(db,'trabajadores'))
@@ -44,7 +44,7 @@ export const handleFetchTrabjadores = ({ payload: { filterType, filterName,start
                 resolve({
                     data, 
                     queryDoc: snapshot.docs[totalCount-1],
-                    isLastPage: totalCount < 1  
+                    isLastPage: totalCount < pageSize  
                 })
             })
             .catch( err => {

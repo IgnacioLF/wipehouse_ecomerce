@@ -4,7 +4,6 @@ import { handleAddTrabajador, handleDeleteTrabajador, handleFetchTrabajador, han
 import { auth } from '../../firebase/utils'
 import { setTrabajadores, fetchTrabajadoresStart, setTrabajador } from './trabajadores.actions';
 
-
 export function* addTrabajador ({payload: categoria,nombre,imageURL,precio,descripcion}){
     try {
         const timestamp = new Date();
@@ -18,9 +17,8 @@ export function* addTrabajador ({payload: categoria,nombre,imageURL,precio,descr
             createdDate: timestamp
         })
         yield put(fetchTrabajadoresStart())
-
     } catch (err) {
-        console.log(err)  
+        /* console.log(err)  */ 
     }
 }
 
@@ -31,7 +29,7 @@ export function* fetchTrabjadores ({payload}) {
             setTrabajadores(trabajadores)
         );
     } catch (err){
-        console.log(err)
+        /* console.log(err) */
     }
 }
 
@@ -40,7 +38,7 @@ export function* deleteTrabjador({payload}){
         yield handleDeleteTrabajador(payload);
         yield put(fetchTrabajadoresStart())
     } catch (err) {
-        console.log(err)
+        /* console.log(err) */
     }
 }
 
@@ -48,9 +46,8 @@ export function* fetchTrabajador ({ payload }) {
     try {
         const trabajador = yield handleFetchTrabajador(payload)
         yield put(setTrabajador(trabajador))
-
     } catch (err) {
-        console.log(err)
+        /* console.log(err) */
     }
 }
 

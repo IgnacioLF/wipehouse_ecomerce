@@ -60,7 +60,6 @@ const TrabajadorDetailsCard = () => {
             documentID: trabajadorID,
             quantity: parseInt(form.quantity)
         }
-        console.log('cartItem', cartItem)
         dispatch(addProductToCart(cartItem))
     }
 

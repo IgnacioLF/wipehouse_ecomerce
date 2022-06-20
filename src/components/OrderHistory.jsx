@@ -4,7 +4,9 @@ import { useNavigate } from 'react-router-dom'
 
 const OrderHistory = ({ orders }) => {
     const navigate = useNavigate();
+    
     if (!orders) return
+
     return(
         <table className="orderHistoryTable">
             <thead>

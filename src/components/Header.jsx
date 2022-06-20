@@ -8,7 +8,6 @@ import { selectCartItemsCount } from '../redux/Cart/cart.selectors';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useState } from 'react';
 
-
 const mapState = (state) => ({
     currentUser: state.user.currentUser,
     totalNumCartItems: selectCartItemsCount(state)
@@ -20,12 +19,9 @@ const Header = (props) => {
     const dispatch = useDispatch();
     const [ mobileMenu, setMobileMenu ] = useState(false)
 
-
-    
     const signOut = () => {
         dispatch(signOutUserStart())
     }
-    //  userRoles.includes('admin')
 
     const handleMobileMenuClick = () => {
         if(mobileMenu){
@@ -115,10 +111,8 @@ const Header = (props) => {
     )
 }
 
-
 Header.defaultProps = {
     currentUser: null,
 }
-
 
 export default Header;
