@@ -31,23 +31,23 @@ const App = (props) => {
     },[])  
  
     return  (
-        <div >
+        <div className='app'>
             <Header />
             <div className={isAdmin ? ('admin') : 'user'}>
-            <Routes>
-                <Route exact path="/" element={<Homepage />} />
-                <Route path="/register" element={<Registration />} />
-                <Route path="/login" element={<Loginpage />} />
-                <Route path="/resetpassword" element={<ResetPasswordpage />} />
-                <Route path="/account" element={<MyAccount />} />
-                <Route path="/adminpanel" element={<AdminPanel />} />
-                <Route exact path="/search" element={<Searchpage />} />
-                <Route path="/search/:filterType" element={<Searchpage />} />
-                <Route path="/trabajador/:trabajadorID" element={<TrabajadorDetails />} />
-                <Route path="/carro" element={<Cartpage />} />
-                <Route path="/payment" element={<Paymentpage />} />
-                <Route path="/order/:orderID" element={<Orderpage />} />
-            </Routes>
+                <Routes>
+                    <Route exact path="/" element={<Homepage />} />
+                    <Route path="/register" element={<Registration />} />
+                    <Route path="/login" element={<Loginpage />} />
+                    <Route path="/resetpassword" element={<ResetPasswordpage />} />
+                    <Route path="/account" element={<MyAccount />} />
+                    <Route path="/adminpanel" element={<AdminPanel />} />
+                    <Route exact path="/search" element={<Searchpage />} />
+                    <Route path="/search/:filterType" element={<Searchpage />} />
+                    <Route path="/trabajador/:trabajadorID" element={<TrabajadorDetails />} />
+                    <Route path="/carro" element={<Cartpage />} />
+                    <Route path="/payment" element={<Paymentpage />} />
+                    <Route path="/order/:orderID" element={<Orderpage />} />
+                </Routes>
             </div>
             <Footer />
         </div>

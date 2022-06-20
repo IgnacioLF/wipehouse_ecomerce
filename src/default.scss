@@ -27,11 +27,6 @@ a {
     text-decoration: none;
 }
 
-/* a,a:hover{
-    -webkit-transition: all .4s ease-in-out;
-    -moz-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-} */
 .user {
     padding-top: 7rem;
     min-height: 84.5vh;
@@ -40,4 +35,7 @@ a {
     padding-top: 11rem;
     min-height: 84.5vh;
 }
-
+.app{
+    display: grid;
+    grid-template-areas: 'auto 1fr auto';
+}

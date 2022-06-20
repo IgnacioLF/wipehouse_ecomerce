@@ -28,3 +28,35 @@
         cursor: pointer;
     }
 }
+
+@media screen and (max-width: 1026px) {
+    .orderHistoryTable{
+        padding: 0 1rem;
+        td{
+            padding: 1rem 2.5rem;
+        }
+        th {
+            padding: 0.5rem 2.5rem;
+        }
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .orderHistoryTable {
+        padding: 0 0.5rem;
+        margin: 0 0.5rem;
+        td {
+            padding: 0.5rem 1.25rem;
+        }
+
+        th {
+            padding: 0.25rem 1.25rem;
+        }
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .orderHistoryTable {
+        font-size: 1.5rem;
+    }
+}

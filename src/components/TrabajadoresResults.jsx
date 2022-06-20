@@ -10,7 +10,6 @@ import LoadMore from './LoadMore';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import LightBlueButton from './ui/LightBlueButton';
 
-
 const mapState = ({ trabajadoresData }) => ({
     trabajadores: trabajadoresData.trabajadores
 });
@@ -54,7 +53,7 @@ const TrabajadoresResults = () => {
         dispatch(fetchTrabajadoresStart({ filterType, filterName }))
     }
 
-    const handleFilter = (e) => {
+    const handleFilter = e => {
         const nextFilter= e.target.value;
         navigate(`/search/${nextFilter}`)
     }

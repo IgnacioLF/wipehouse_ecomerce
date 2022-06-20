@@ -26,4 +26,16 @@
         }
     }
 }
+@media screen and (max-width: 850px) {
+    .checkoutItem{
+        .checkoutImage{
+            img{
+                border: 3px solid #2c3340;
+                width: 10rem;
+                height: 10rem;
+            }
+        }
+    }
+
+}
 

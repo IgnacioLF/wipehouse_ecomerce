@@ -17,7 +17,6 @@ const mapState = createStructuredSelector({
     cartItems: selectCartItems,
     total: selectCartTotal,
     itemCount: selectCartItemsCount
-
 })
 
 const Paymentpage = () => {

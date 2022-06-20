@@ -6,10 +6,9 @@
         font-size: 4.5rem;
     }
     .insideResults {
-        margin: 0 7rem;
+        margin: 0 4%;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-areas: 'trabajador trabajador trabajador';
     }
     .pagger{
         display: flex;
@@ -44,7 +43,7 @@
         h2{
             margin: 0;
             padding: 0;
-            margin-left: 8.5rem;
+            margin-left: 5%;
             margin-right: 1rem;
             padding-bottom: 0.5rem;
             color: #2c3340;
@@ -52,4 +51,19 @@
     }
 }
 
+@media screen and (max-width: 1613px) {
+    .trabajadoresResults {
+        .insideResults {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}
+
+@media screen and (max-width: 1028px) {
+    .trabajadoresResults {
+        .insideResults {
+            grid-template-columns: 1fr;
+        }
+    }
+}
 

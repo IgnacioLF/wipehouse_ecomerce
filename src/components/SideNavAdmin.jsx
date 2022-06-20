@@ -2,7 +2,6 @@ import UserProfile from "./UserProfile"
 import './SideNavAdmin.scss'
 
 const SideNavAdmin = ({children}) => {
-
     return(
     <div className="verticalNavAdmin">
         <UserProfile />
