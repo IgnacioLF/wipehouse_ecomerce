@@ -7,7 +7,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "format": "prettier --write",
-    "lint": "eslint --fix . --ext .js,.jsx"
+    "lint": "eslint --fix . --ext .js,.jsx",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "bootstrap-icons": "^1.8.3",
