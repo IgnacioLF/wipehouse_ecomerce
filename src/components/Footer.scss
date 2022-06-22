@@ -89,5 +89,18 @@ footer {
 @media screen and (max-width: 540px) {
     footer {
         flex-direction: column;
+        line-height: 2rem;
+        .leftFooter{
+            align-items: center;
+            justify-content: center;
+        }
+        .rightFooter{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            p{
+                margin-top: 1rem;
+            }
+        }
     }
 }

@@ -76,3 +76,15 @@
         }
     }
 }
+
+@media screen and (max-width: 520px) {
+    .trabajadorCard{
+        .trabajadorCardImage{
+            width: 15rem;
+            height: 15rem;
+        }
+        .categoriaCard{
+            margin-top: 0.5rem;
+        }
+    }
+}
