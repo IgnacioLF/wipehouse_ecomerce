@@ -9,6 +9,7 @@ import SelectLabel from './form/components/SelectLabel';
 import LoadMore from './LoadMore';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import LightBlueButton from './ui/LightBlueButton';
+import orderError from '../assets/orderError.png'
 
 const mapState = ({ trabajadoresData }) => ({
     trabajadores: trabajadoresData.trabajadores
@@ -63,9 +64,21 @@ const TrabajadoresResults = () => {
     if (data.length<1) {
         return (
             <div className='trabajadoresResults'>
+                <h1>Buscar trabajadores</h1>
+                <div className='resultsSearchBar'>
+                    <input type={'text'} placeholder={'Buscar Nombre '} name={'filterName'} value={filterName} onChange={(e) => setFilterName(e.target.value)} />
+                    <LightBlueButton buttonclick={handleOnClickSearch}><i className="bi bi-search"></i></LightBlueButton>
+                </div>
+                <div className='resultsCategoriaFilter'>
+                    <h2>Categoría : </h2>
+                    <SelectLabel  selectOptions={configFilters} selectChange={handleFilter} selectValue={filterType} />
+                </div>
                 <h1>
                     No hay resultados
                 </h1>
+                <div className='noResultsImage'>
+                    <img src={orderError} />
+                </div>
             </div>
         )
     }

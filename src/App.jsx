@@ -17,6 +17,7 @@ import Paymentpage from './pages/Paymentpage.jsx';
 import Orderpage from './pages/Orderpage.jsx';
 import ResetPasswordpage from './pages/ResetPasswordpage.jsx';
 import Footer from './components/Footer.jsx';
+import BackToTopButton from './components/ui/BackToTopButton.jsx';
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser
@@ -49,6 +50,7 @@ const App = (props) => {
                     <Route path="/order/:orderID" element={<Orderpage />} />
                 </Routes>
             </div>
+            <BackToTopButton />
             <Footer />
         </div>
     )
